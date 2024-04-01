@@ -1,0 +1,5 @@
+#Bitcher
+
+Future 
+Predictions 
+Information
