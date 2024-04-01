@@ -51,9 +51,6 @@ class MainDetailViewController : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
-        self.title = self.notes.name
-        self.text.text = self.notes.market_cap_usd
-        self.day.text = self.notes.percent_change_1h
         setLayout()
         setBinding()
     }

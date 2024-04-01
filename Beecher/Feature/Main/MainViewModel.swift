@@ -12,23 +12,23 @@ import RxCocoa
 class MainViewModel {
     private let disposeBag = DisposeBag()
     let inputTrigger = PublishSubject<Void>()
-    let MainTable: BehaviorRelay<[CoinData]> = BehaviorRelay(value: [])
-    
+    let MainTable: BehaviorRelay<[[CoinDataWithAdditionalInfo]]> = BehaviorRelay(value: [])
     //페이징 변수
     private let initialLoadStart = 0
-    private let initialLoadLimit = 20
+    private let initialLoadLimit = 3
     private var currentPage = 0
     
     init() {
         inputTrigger
             .startWith(())
-            .flatMapLatest { _ in
+            .subscribe { _ in
                 CoinService.getAllCoin(start: self.initialLoadStart, limit: self.initialLoadLimit)
+                    .map { coinData -> [[CoinDataWithAdditionalInfo]] in
+                        return coinData
+                    }
+                    .bind(to: self.MainTable)
+                    .disposed(by: self.disposeBag)
             }
-            .map { coinData -> [CoinData] in
-                return coinData.data ?? []
-            }
-            .bind(to: MainTable)
             .disposed(by: disposeBag)
         // 60초마다 새로운 데이터 가져오기
         Observable<Int>.interval(.seconds(60), scheduler: MainScheduler.instance)
@@ -39,12 +39,12 @@ class MainViewModel {
     }
     func loadMoreData() {
         currentPage += 1
-        let start = currentPage * 20
-        let limit = start + 20
+        let start = currentPage * 3
+        let limit = start + 3
         if limit <= 100 {
             CoinService.getAllCoin(start: start, limit: limit)
-                .map { coinData -> [CoinData] in
-                    return coinData.data ?? []
+                .map { coinData -> [[CoinDataWithAdditionalInfo]] in
+                    return coinData
                 }
                 .subscribe(onNext: { [weak self] newData in
                     guard let self = self else { return }

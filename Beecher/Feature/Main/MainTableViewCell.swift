@@ -28,7 +28,7 @@ class MainTableViewCell : UITableViewCell {
         label.font = UIFont.boldSystemFont(ofSize: 15)
         return label
     }()
-    //코인 시가 총액
+    //거래량 총액
     private let availLabel : UILabel = {
         let label = UILabel()
         label.textColor = .black
@@ -65,7 +65,7 @@ class MainTableViewCell : UITableViewCell {
         let contentView = self.contentView
         contentView.backgroundColor = .white
         contentView.snp.makeConstraints { make in
-            make.height.equalTo(80)
+            make.height.equalTo(300)
             make.leading.trailing.equalToSuperview().inset(0)
         }
         totalView.addSubview(titleLabel)
@@ -94,18 +94,30 @@ class MainTableViewCell : UITableViewCell {
             make.top.bottom.equalToSuperview().inset(10)
         }
     }
-    func configure(with model: CoinData) {
-        titleLabel.text = model.name
-        availLabel.text = "시가 총액 기준 순위 : \(model.rank ?? 0)위"
-        price.text = "$\(model.price_usd ?? "")"
-        if let percent = Double(model.percent_change_1h ?? "0") {
-            if percent >= 0 {
-                arrow.textColor = .systemRed
-                arrow.text = "+\(percent)% 📈"
-            }else {
-                arrow.textColor = .systemBlue
-                arrow.text = "\(percent)% 📉"
-            }
-        }else{}
+    func configure(with model: [CoinDataWithAdditionalInfo]) {
+        let coinName = model.compactMap{ $0.coinName }
+        let change = model.compactMap{ $0.coinData.change }
+        let change_rate = model.compactMap{ $0.coinData.change_rate }
+        let volume = model.compactMap{ $0.coinData.acc_trade_volume_24h }
+        let trade_price = model.compactMap{ $0.coinData.trade_price }
+        
+        //소수점 자리 설정
+        titleLabel.text = coinName[0]
+        if trade_price[0] >= 10000 {
+            price.text = "\(trade_price[0] / 10000)만 KRW"
+        }else{
+            price.text = "\(trade_price[0]) KRW"
+        }
+        if change[0] == "EVEN"{
+            arrow.textColor = .gray
+            arrow.text = "보합"
+        }else if change[0] == "RISE" {
+            arrow.textColor = .systemRed
+            arrow.text = "+\(change_rate[0])% 📈"
+        }else if change[0] == "FALL" {
+            arrow.textColor = .systemBlue
+            arrow.text = "-\(change_rate[0])% 📉"
+        }
+        availLabel.text = "24h : \(volume[0])"
     }
 }
