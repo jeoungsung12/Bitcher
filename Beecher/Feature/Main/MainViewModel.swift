@@ -13,12 +13,17 @@ class MainViewModel {
     private let disposeBag = DisposeBag()
     let inputTrigger = PublishSubject<Void>()
     let MainTable: BehaviorRelay<[[CoinDataWithAdditionalInfo]]> = BehaviorRelay(value: [])
+    
+    //검색
+    let searchInputrigger = PublishSubject<String>()
+    let searchResult : PublishSubject<[CoinDataWithAdditionalInfo]> = PublishSubject()
     //페이징 변수
     private let initialLoadStart = 0
     private let initialLoadLimit = 3
     private var currentPage = 0
     
     init() {
+        //MARK: - GetCoinInfo
         inputTrigger
             .startWith(())
             .subscribe { _ in
@@ -36,6 +41,14 @@ class MainViewModel {
                 self.inputTrigger.onNext(())
             })
             .disposed(by: disposeBag)
+        
+        
+        //MARK: - SearchCoinInfo
+        searchInputrigger.flatMapLatest { coinName in
+            return SearchCoin.searchCoin(searchName: coinName)
+        }
+        .bind(to: searchResult)
+        .disposed(by: disposeBag)
     }
     func loadMoreData() {
         currentPage += 1

@@ -130,10 +130,10 @@ extension MainViewController {
                 self.mainViewModel.inputTrigger.onNext(())
             }
             .disposed(by: disposeBag)
-//        searchBtn.rx.controlEvent(.valueChanged)
-//            .subscribe { _ in
-//                <#code#>
-//            }
-//            .disposed(by: disposeBag)
+        searchBtn.rx.tap
+            .subscribe { _ in
+                self.navigationController?.pushViewController(SearchViewController(), animated: true)
+            }
+            .disposed(by: disposeBag)
     }
 }

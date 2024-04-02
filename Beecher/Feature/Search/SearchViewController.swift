@@ -1,8 +1,8 @@
 //
-//  MainTableViewCell.swift
-//  Baedug
+//  SearchViewController.swift
+//  Beecher
 //
-//  Created by 정성윤 on 2024/03/03.
+//  Created by 정성윤 on 2024/04/02.
 //
 
 import Foundation
@@ -10,13 +10,53 @@ import RxSwift
 import RxCocoa
 import SnapKit
 import UIKit
-import Charts
 import DGCharts
-class MainTableViewCell : UITableViewCell {
+
+class SearchViewController : UIViewController {
+    private let disposeBag = DisposeBag()
+    private let searchViewModel = SearchViewModel()
+    //MARK: UI Components
+    //검색 창
+    private let searchView : UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        view.layer.borderColor = UIColor.keyColor.cgColor
+        view.layer.cornerRadius = 10
+        view.layer.masksToBounds = true
+        view.layer.borderWidth = 1
+        view.frame = CGRect(x: 0, y: 0, width: 250, height: 35)
+        return view
+    }()
+    //검색 텍스트
+    private let searchText : UITextField = {
+        let text = UITextField()
+        text.textColor = .black
+        text.backgroundColor = .white
+        text.placeholder = "코인을 검색하세요!"
+        text.textAlignment = .left
+        text.font = UIFont.systemFont(ofSize: 15)
+        text.frame = CGRect(x: 10, y: 3, width: 200, height: 30)
+        return text
+    }()
+    //검색 버튼
+    private let searchBtn : UIButton = {
+        let btn = UIButton()
+        btn.backgroundColor = .white
+        btn.setImage(UIImage(systemName: "magnifyingglass"), for: .normal)
+        btn.tintColor = .keyColor
+        return btn
+    }()
+    private let loadingIndicator : UIActivityIndicatorView = {
+        let view = UIActivityIndicatorView()
+        view.style = .medium
+        view.color = .lightGray
+        return view
+    }()
     //전체 뷰
     private let totalView : UIView = {
         let view = UIView()
         view.backgroundColor = .white
+        view.clipsToBounds = true
         return view
     }()
     //코인 이름
@@ -65,25 +105,30 @@ class MainTableViewCell : UITableViewCell {
         view.backgroundColor = .white
         return view
     }()
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        setupUI()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tabBarController?.tabBar.isHidden = true
     }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        setupUI()
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setLayout()
+        setBinding()
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.tabBarController?.tabBar.isHidden = false
     }
 }
 //MARK: - UI Layout
-extension MainTableViewCell {
-    private func setupUI() {
-        let contentView = self.contentView
-        contentView.backgroundColor = .white
-        contentView.snp.makeConstraints { make in
-            make.height.equalTo(300)
-            make.leading.trailing.equalToSuperview().inset(0)
-        }
+extension SearchViewController {
+    private func setLayout() {
+        self.title = ""
+        self.view.backgroundColor = .white
+        self.searchView.addSubview(searchText)
+        self.navigationItem.titleView = searchView
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: searchBtn)
+        self.view.clipsToBounds = true
+        
         totalView.addSubview(titleLabel)
         totalView.addSubview(availLabel)
         totalView.addSubview(price)
@@ -110,10 +155,18 @@ extension MainTableViewCell {
             make.leading.trailing.equalToSuperview().inset(10)
             make.bottom.equalToSuperview().inset(0)
         }
-        contentView.addSubview(totalView)
+        self.view.addSubview(totalView)
+        self.view.addSubview(loadingIndicator)
+        
+        loadingIndicator.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview().inset(0)
+            make.height.equalTo(30)
+            make.center.equalToSuperview()
+        }
         totalView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(20)
-            make.top.bottom.equalToSuperview().inset(10)
+            make.top.equalToSuperview().offset(self.view.frame.height / 10)
+            make.height.equalTo(280)
         }
     }
     private func setBar(name : String, close : Double, low : Double, high : Double, open : Double) {
@@ -130,7 +183,7 @@ extension MainTableViewCell {
         
         chart.data = data
     }
-    func configure(with model: [CoinDataWithAdditionalInfo]) {
+    private func setValue(model : [CoinDataWithAdditionalInfo]) {
         let coinName = model.compactMap{ $0.coinName } //코인 이름
         let coinMarket = model.compactMap { $0.coinData.market } //코인 마켓
         let change = model.compactMap{ $0.coinData.change } //코인 상/하/보합
@@ -162,5 +215,25 @@ extension MainTableViewCell {
             arrow.text = "-\(change_rate[0])% 📉"
         }
         availLabel.text = "24h : \(volume[0])"
+    }
+}
+//MARK: - setBinding
+extension SearchViewController {
+    private func setBinding() {
+        searchBtn.rx.tap
+            .subscribe { _ in
+                if self.searchText.text != nil {
+                    self.loadingIndicator.startAnimating()
+                    self.searchViewModel.searchInputrigger.onNext((self.searchText.text ?? ""))
+                    self.searchText.text = ""
+                }else{}
+            }
+            .disposed(by: disposeBag)
+        searchViewModel.searchResult
+            .subscribe { coinData in
+                self.setValue(model: coinData)
+                self.loadingIndicator.stopAnimating()
+            }
+            .disposed(by: disposeBag)
     }
 }

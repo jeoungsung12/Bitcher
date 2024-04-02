@@ -33,6 +33,8 @@
 		E4CAF4E52BBBC9F900CB18EC /* SearchCoin.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4CAF4E42BBBC9F900CB18EC /* SearchCoin.swift */; };
 		E4CAF4E92BBBCBA400CB18EC /* TabBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4CAF4E72BBBCBA400CB18EC /* TabBarViewModel.swift */; };
 		E4CAF4EA2BBBCBA400CB18EC /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4CAF4E82BBBCBA400CB18EC /* TabBarViewController.swift */; };
+		E4CAF4ED2BBBD04600CB18EC /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4CAF4EC2BBBD04500CB18EC /* SearchViewController.swift */; };
+		E4CAF4EF2BBBD04D00CB18EC /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4CAF4EE2BBBD04D00CB18EC /* SearchViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +58,8 @@
 		E4CAF4E42BBBC9F900CB18EC /* SearchCoin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCoin.swift; sourceTree = "<group>"; };
 		E4CAF4E72BBBCBA400CB18EC /* TabBarViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewModel.swift; sourceTree = "<group>"; };
 		E4CAF4E82BBBCBA400CB18EC /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
+		E4CAF4EC2BBBD04500CB18EC /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		E4CAF4EE2BBBD04D00CB18EC /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +134,7 @@
 		E4CAF4AE2BB980C600CB18EC /* Feature */ = {
 			isa = PBXGroup;
 			children = (
+				E4CAF4EB2BBBD03800CB18EC /* Search */,
 				E4CAF4E62BBBCBA400CB18EC /* TabBar */,
 				E4CAF4C42BB9884000CB18EC /* Main */,
 				E4CAF4C22BB986F300CB18EC /* Splash */,
@@ -222,6 +227,15 @@
 				E4CAF4E82BBBCBA400CB18EC /* TabBarViewController.swift */,
 			);
 			path = TabBar;
+			sourceTree = "<group>";
+		};
+		E4CAF4EB2BBBD03800CB18EC /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				E4CAF4EC2BBBD04500CB18EC /* SearchViewController.swift */,
+				E4CAF4EE2BBBD04D00CB18EC /* SearchViewModel.swift */,
+			);
+			path = Search;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -324,9 +338,11 @@
 				E4CAF4992BB9808300CB18EC /* AppDelegate.swift in Sources */,
 				E4CAF4DC2BB9B61C00CB18EC /* GetAllCoinModel.swift in Sources */,
 				E4CAF49B2BB9808300CB18EC /* SceneDelegate.swift in Sources */,
+				E4CAF4ED2BBBD04600CB18EC /* SearchViewController.swift in Sources */,
 				E4CAF4D32BB988A900CB18EC /* MainModel.swift in Sources */,
 				E4CAF4CE2BB9884000CB18EC /* MainViewModel.swift in Sources */,
 				E4CAF4E92BBBCBA400CB18EC /* TabBarViewModel.swift in Sources */,
+				E4CAF4EF2BBBD04D00CB18EC /* SearchViewModel.swift in Sources */,
 				E4CAF4EA2BBBCBA400CB18EC /* TabBarViewController.swift in Sources */,
 				E4CAF4D92BB9B2AD00CB18EC /* CoinService.swift in Sources */,
 			);
