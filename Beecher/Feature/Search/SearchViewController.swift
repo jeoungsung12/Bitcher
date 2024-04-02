@@ -102,6 +102,9 @@ class SearchViewController : UIViewController {
         view.doubleTapToZoomEnabled = false
         view.xAxis.labelPosition = .top
         view.xAxis.valueFormatter = IndexAxisValueFormatter(values: ["전일 종가, 저가, 고가, 시가"])
+        view.noDataText = "해당 코인을 찾을 수 없습니다⚠️"
+        view.noDataFont = UIFont.boldSystemFont(ofSize: 12)
+        view.noDataTextColor = .gray
         view.backgroundColor = .white
         return view
     }()

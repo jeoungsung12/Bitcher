@@ -32,6 +32,8 @@ class MainDetailViewController : UIViewController {
         text.backgroundColor = .white
         return text
     }()
+    //캔들 차트
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = true
