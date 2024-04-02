@@ -19,7 +19,7 @@ class MainViewModel {
     let searchResult : PublishSubject<[CoinDataWithAdditionalInfo]> = PublishSubject()
     //페이징 변수
     private let initialLoadStart = 0
-    private let initialLoadLimit = 10
+    private let initialLoadLimit = 15
     private var currentPage = 0
     
     init() {
@@ -37,8 +37,8 @@ class MainViewModel {
     }
     func loadMoreData(completion: @escaping () -> Void) {
         currentPage += 1
-        let start = currentPage * 10
-        let limit = start + 5
+        let start = currentPage * 15
+        let limit = start + 15
         CoinService.getAllCoin(start: start, limit: limit)
             .map { coinData -> [[CoinDataWithAdditionalInfo]] in
                 return coinData
