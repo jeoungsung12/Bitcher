@@ -28,21 +28,21 @@ class TabBarViewController : UITabBarController {
 //MARK: - setup
 extension TabBarViewController {
     private func setupView() {
-        self.tabBar.backgroundColor = .TabColor
-        self.tabBar.tintColor = .keyColor
-        self.tabBar.barTintColor = .TabColor
-        self.tabBar.unselectedItemTintColor = .white
+        self.tabBar.backgroundColor = .keyColor
+        self.tabBar.tintColor = .white
+        self.tabBar.barTintColor = .keyColor
+        self.tabBar.unselectedItemTintColor = .graph3
         //탭바 설정
         let firstVC = MainViewController()
-        firstVC.tabBarItem = UITabBarItem(title: nil, image: UIImage(systemName: "list.bullet"), tag: 0)
+        firstVC.tabBarItem = UITabBarItem(title: "홈", image: UIImage(systemName: "list.bullet"), tag: 0)
         let firstNavigationVC = UINavigationController(rootViewController: firstVC)
         
         let secondVC = MainViewController()
-        secondVC.tabBarItem = UITabBarItem(title: nil, image: UIImage(systemName: "plus.circle"), tag: 1)
+        secondVC.tabBarItem = UITabBarItem(title: "분석", image: UIImage(systemName: "plus.circle"), tag: 1)
         let secondNavigationVC = UINavigationController(rootViewController: secondVC)
         
         let thirdVC = MainViewController()
-        thirdVC.tabBarItem = UITabBarItem(title: nil, image: UIImage(systemName: "person.fill"), tag: 2)
+        thirdVC.tabBarItem = UITabBarItem(title: "마이페이지", image: UIImage(systemName: "person.fill"), tag: 2)
         let thirdNavigationVC = UINavigationController(rootViewController: thirdVC)
         
         self.viewControllers = [firstNavigationVC, secondNavigationVC, thirdNavigationVC]

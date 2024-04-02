@@ -9,12 +9,16 @@ import UIKit
 import RxSwift
 import RxCocoa
 import SnapKit
-
+import NVActivityIndicatorView
 class MainViewController: UIViewController {
     private let disposeBag = DisposeBag()
     private let mainViewModel = MainViewModel()
+    
+    //데이터 관련 변수
+    private var previousData: [[CoinDataWithAdditionalInfo]] = []
     private var isLoadingData = false
     private var timer: Timer?
+    
     //검색
     private let searchBtn : UIButton = {
         let btn = UIButton()
@@ -51,10 +55,8 @@ class MainViewController: UIViewController {
         view.register(MainTableViewCell.self, forCellReuseIdentifier: "Cell")
         return view
     }()
-    private let loadingIndicator : UIActivityIndicatorView = {
-        let view = UIActivityIndicatorView()
-        view.style = .medium
-        view.color = .lightGray
+    private let loadingIndicator : NVActivityIndicatorView = {
+        let view = NVActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 30, height: 30), type: .ballBeat, color: .TabColor, padding: nil)
         return view
     }()
     override func viewWillAppear(_ animated: Bool) {

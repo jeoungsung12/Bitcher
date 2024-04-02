@@ -11,6 +11,7 @@ import RxCocoa
 import SnapKit
 import UIKit
 import DGCharts
+import NVActivityIndicatorView
 
 class SearchViewController : UIViewController, UITextFieldDelegate {
     private let disposeBag = DisposeBag()
@@ -50,10 +51,8 @@ class SearchViewController : UIViewController, UITextFieldDelegate {
         btn.tintColor = .keyColor
         return btn
     }()
-    private let loadingIndicator : UIActivityIndicatorView = {
-        let view = UIActivityIndicatorView()
-        view.style = .medium
-        view.color = .lightGray
+    private let loadingIndicator : NVActivityIndicatorView = {
+        let view = NVActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 30, height: 30), type: .ballBeat, color: .TabColor, padding: nil)
         return view
     }()
     //전체 뷰

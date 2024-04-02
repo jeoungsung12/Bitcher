@@ -34,6 +34,7 @@
 		E4CAF4EA2BBBCBA400CB18EC /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4CAF4E82BBBCBA400CB18EC /* TabBarViewController.swift */; };
 		E4CAF4ED2BBBD04600CB18EC /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4CAF4EC2BBBD04500CB18EC /* SearchViewController.swift */; };
 		E4CAF4EF2BBBD04D00CB18EC /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4CAF4EE2BBBD04D00CB18EC /* SearchViewModel.swift */; };
+		E4DABEBC2BBC7A2200AE9DFB /* NVActivityIndicatorView in Frameworks */ = {isa = PBXBuildFile; productRef = E4DABEBB2BBC7A2200AE9DFB /* NVActivityIndicatorView */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -67,6 +68,7 @@
 			files = (
 				E4CAF4D72BB9AE0900CB18EC /* Kingfisher in Frameworks */,
 				E4CAF4E22BBBB70800CB18EC /* SCLAlertView in Frameworks */,
+				E4DABEBC2BBC7A2200AE9DFB /* NVActivityIndicatorView in Frameworks */,
 				E4CAF4BC2BB982FD00CB18EC /* Alamofire in Frameworks */,
 				E4CAF4B62BB982C600CB18EC /* SnapKit in Frameworks */,
 				E4CAF4B32BB982BD00CB18EC /* RxSwift in Frameworks */,
@@ -252,6 +254,7 @@
 				E4CAF4D62BB9AE0900CB18EC /* Kingfisher */,
 				E4CAF4DE2BBBB6F800CB18EC /* DGCharts */,
 				E4CAF4E12BBBB70800CB18EC /* SCLAlertView */,
+				E4DABEBB2BBC7A2200AE9DFB /* NVActivityIndicatorView */,
 			);
 			productName = Beecher;
 			productReference = E4CAF4952BB9808300CB18EC /* Beecher.app */;
@@ -289,6 +292,7 @@
 				E4CAF4D52BB9AE0900CB18EC /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				E4CAF4DD2BBBB6F800CB18EC /* XCRemoteSwiftPackageReference "Charts" */,
 				E4CAF4E02BBBB70700CB18EC /* XCRemoteSwiftPackageReference "SCLAlertView-Swift" */,
+				E4DABEBA2BBC7A2200AE9DFB /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */,
 			);
 			productRefGroup = E4CAF4962BB9808300CB18EC /* Products */;
 			projectDirPath = "";
@@ -610,6 +614,14 @@
 				minimumVersion = 0.8.2;
 			};
 		};
+		E4DABEBA2BBC7A2200AE9DFB /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ninjaprox/NVActivityIndicatorView.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -652,6 +664,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = E4CAF4E02BBBB70700CB18EC /* XCRemoteSwiftPackageReference "SCLAlertView-Swift" */;
 			productName = SCLAlertView;
+		};
+		E4DABEBB2BBC7A2200AE9DFB /* NVActivityIndicatorView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E4DABEBA2BBC7A2200AE9DFB /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */;
+			productName = NVActivityIndicatorView;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

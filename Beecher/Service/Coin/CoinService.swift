@@ -19,7 +19,7 @@ class CoinService {
                 .responseDecodable(of: [GetAllCoinModel].self) { response in
                     switch response.result {
                     case .success(let data):
-                        self.getDetail(data, start: start, limit: limit, delayInterval: 0.5) { result in
+                        self.getDetail(data, start: start, limit: limit, delayInterval: 0.3) { result in
                             switch result {
                             case .success(let coinDataArray):
                                 observer.onNext(coinDataArray)

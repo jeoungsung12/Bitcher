@@ -19,7 +19,7 @@ class MainViewModel {
     let searchResult : PublishSubject<[CoinDataWithAdditionalInfo]> = PublishSubject()
     //페이징 변수
     private let initialLoadStart = 0
-    private let initialLoadLimit = 5
+    private let initialLoadLimit = 10
     private var currentPage = 0
     
     init() {
@@ -37,25 +37,19 @@ class MainViewModel {
     }
     func loadMoreData(completion: @escaping () -> Void) {
         currentPage += 1
-        let start = currentPage * 5
+        let start = currentPage * 10
         let limit = start + 5
-        print("첫 시작 \(start), \(limit)")
-        if limit <= 100 {
-            CoinService.getAllCoin(start: start, limit: limit)
-                .map { coinData -> [[CoinDataWithAdditionalInfo]] in
-                    return coinData
-                }
-                .subscribe(onNext: { [weak self] newData in
-                    guard let self = self else { return }
-                    var currentData = self.MainTable.value
-                    currentData.append(contentsOf: newData)
-                    self.MainTable.accept(currentData)
-                    completion()
-                })
-                .disposed(by: disposeBag)
-        } else {
-            completion()
-            return
-        }
+        CoinService.getAllCoin(start: start, limit: limit)
+            .map { coinData -> [[CoinDataWithAdditionalInfo]] in
+                return coinData
+            }
+            .subscribe(onNext: { [weak self] newData in
+                guard let self = self else { return }
+                var currentData = self.MainTable.value
+                currentData.append(contentsOf: newData)
+                self.MainTable.accept(currentData)
+                completion()
+            })
+            .disposed(by: disposeBag)
     }
 }
