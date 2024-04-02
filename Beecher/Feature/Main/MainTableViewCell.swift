@@ -53,8 +53,9 @@ class MainTableViewCell : UITableViewCell {
         return label
     }()
     //코인 차트
-    private let chart : BarChartView = {
-        let view = BarChartView()
+    private let chart : LineChartView = {
+        let view = LineChartView()
+        view.isUserInteractionEnabled = false
         view.drawGridBackgroundEnabled = false
         view.xAxis.drawGridLinesEnabled = false
         view.leftAxis.drawGridLinesEnabled = false
@@ -62,7 +63,18 @@ class MainTableViewCell : UITableViewCell {
         view.doubleTapToZoomEnabled = false
         view.xAxis.labelPosition = .top
         view.xAxis.valueFormatter = IndexAxisValueFormatter(values: ["전일 종가, 저가, 고가, 시가"])
+        view.xAxis.drawLabelsEnabled = false
+        view.leftAxis.drawLabelsEnabled = false
+        view.rightAxis.drawLabelsEnabled = false
+        view.noDataText = ""
         view.backgroundColor = .white
+        return view
+    }()
+    private let decText : UITextView = {
+        let view = UITextView()
+        view.textAlignment = .left
+        view.textColor = .gray
+        view.font = UIFont.systemFont(ofSize: 9)
         return view
     }()
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -81,7 +93,7 @@ extension MainTableViewCell {
         let contentView = self.contentView
         contentView.backgroundColor = .white
         contentView.snp.makeConstraints { make in
-            make.height.equalTo(300)
+            make.height.equalTo(150)
             make.leading.trailing.equalToSuperview().inset(0)
         }
         totalView.addSubview(titleLabel)
@@ -89,6 +101,7 @@ extension MainTableViewCell {
         totalView.addSubview(price)
         totalView.addSubview(arrow)
         totalView.addSubview(chart)
+        totalView.addSubview(decText)
         titleLabel.snp.makeConstraints { make in
             make.top.leading.equalToSuperview().inset(10)
             make.height.equalTo(15)
@@ -107,8 +120,15 @@ extension MainTableViewCell {
         }
         chart.snp.makeConstraints { make in
             make.top.equalTo(availLabel.snp.bottom).offset(10)
-            make.leading.trailing.equalToSuperview().inset(10)
+            make.trailing.equalToSuperview().inset(10)
+            make.leading.equalTo(arrow.snp.leading).offset(0)
             make.bottom.equalToSuperview().inset(0)
+        }
+        decText.snp.makeConstraints { make in
+            make.top.equalTo(availLabel.snp.bottom).offset(10)
+            make.leading.equalToSuperview().offset(10)
+            make.bottom.equalToSuperview().inset(0)
+            make.width.equalToSuperview().dividedBy(2.5)
         }
         contentView.addSubview(totalView)
         totalView.snp.makeConstraints { make in
@@ -116,17 +136,22 @@ extension MainTableViewCell {
             make.top.bottom.equalToSuperview().inset(10)
         }
     }
-    private func setBar(name : String, close : Double, low : Double, high : Double, open : Double) {
-        var entries: [BarChartDataEntry] = []
-        entries.append(BarChartDataEntry(x: 0, y: close))
-        entries.append(BarChartDataEntry(x: 1, y: low))
-        entries.append(BarChartDataEntry(x: 2, y: high))
-        entries.append(BarChartDataEntry(x: 3, y: open))
-        let dataSet = BarChartDataSet(entries: entries, label: name)
-        dataSet.colors = [.systemGray, .systemBlue, .systemRed, .systemGray2]
+    private func setChart(name: String, close: Double, low: Double, high: Double, open: Double, now : Double) {
+        var entries: [ChartDataEntry] = []
+        entries.append(ChartDataEntry(x: 0, y: close))
+        entries.append(ChartDataEntry(x: 1, y: low))
+        entries.append(ChartDataEntry(x: 2, y: high))
+        entries.append(ChartDataEntry(x: 3, y: open))
+        entries.append(ChartDataEntry(x: 4, y: now))
+        
+        let dataSet = LineChartDataSet(entries: entries, label: "")
+        dataSet.colors = [.graph3, .graph2, .graph1, .graph3, .graph3]
         dataSet.valueTextColor = .black
         dataSet.highlightEnabled = false
-        let data = BarChartData(dataSet: dataSet)
+        dataSet.circleRadius = 2.0
+        dataSet.circleColors = [.black]
+        dataSet.drawValuesEnabled = false
+        let data = LineChartData(dataSet: dataSet)
         
         chart.data = data
     }
@@ -143,7 +168,6 @@ extension MainTableViewCell {
         let low = model.compactMap{ $0.coinData.low_price } //저가
         let high = model.compactMap{ $0.coinData.high_price } //고가
         let open = model.compactMap{ $0.coinData.opening_price } //시가
-        setBar(name: coinName[0], close: close[0], low: low[0], high: high[0], open: open[0])
         
         titleLabel.text = "\(coinName[0]) \(coinMarket[0])"
         if trade_price[0] >= 10000 {
@@ -157,10 +181,14 @@ extension MainTableViewCell {
         }else if change[0] == "RISE" {
             arrow.textColor = .systemRed
             arrow.text = "+\(change_rate[0])% 📈"
+            setChart(name: coinName[0], close: close[0], low: low[0], high: high[0], open: open[0], now: trade_price[0])
         }else if change[0] == "FALL" {
             arrow.textColor = .systemBlue
             arrow.text = "-\(change_rate[0])% 📉"
+            setChart(name: coinName[0], close: close[0], low: low[0], high: high[0], open: open[0], now: trade_price[0])
         }
         availLabel.text = "24h : \(volume[0])"
+        
+        decText.text = "전일 종가 : \(close[0])\n저가 : \(low[0])\n고가 : \(high[0])\n시가 : \(open[0])"
     }
 }

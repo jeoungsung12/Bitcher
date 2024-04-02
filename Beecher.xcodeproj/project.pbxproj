@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		E4CAF4992BB9808300CB18EC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4CAF4982BB9808300CB18EC /* AppDelegate.swift */; };
 		E4CAF49B2BB9808300CB18EC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4CAF49A2BB9808300CB18EC /* SceneDelegate.swift */; };
-		E4CAF49D2BB9808300CB18EC /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4CAF49C2BB9808300CB18EC /* SplashViewController.swift */; };
 		E4CAF4A22BB9808400CB18EC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E4CAF4A12BB9808400CB18EC /* Assets.xcassets */; };
 		E4CAF4A52BB9808400CB18EC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E4CAF4A32BB9808400CB18EC /* LaunchScreen.storyboard */; };
 		E4CAF4B12BB982BD00CB18EC /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = E4CAF4B02BB982BD00CB18EC /* RxCocoa */; };
@@ -41,7 +40,6 @@
 		E4CAF4952BB9808300CB18EC /* Beecher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Beecher.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4CAF4982BB9808300CB18EC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E4CAF49A2BB9808300CB18EC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		E4CAF49C2BB9808300CB18EC /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		E4CAF4A12BB9808400CB18EC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E4CAF4A42BB9808400CB18EC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E4CAF4A62BB9808400CB18EC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -137,7 +135,6 @@
 				E4CAF4EB2BBBD03800CB18EC /* Search */,
 				E4CAF4E62BBBCBA400CB18EC /* TabBar */,
 				E4CAF4C42BB9884000CB18EC /* Main */,
-				E4CAF4C22BB986F300CB18EC /* Splash */,
 			);
 			path = Feature;
 			sourceTree = "<group>";
@@ -148,14 +145,6 @@
 				E4CAF4C02BB9864100CB18EC /* Color + Extension.swift */,
 			);
 			path = Core;
-			sourceTree = "<group>";
-		};
-		E4CAF4C22BB986F300CB18EC /* Splash */ = {
-			isa = PBXGroup;
-			children = (
-				E4CAF49C2BB9808300CB18EC /* SplashViewController.swift */,
-			);
-			path = Splash;
 			sourceTree = "<group>";
 		};
 		E4CAF4C42BB9884000CB18EC /* Main */ = {
@@ -330,7 +319,6 @@
 			files = (
 				E4CAF4CD2BB9884000CB18EC /* MainViewController.swift in Sources */,
 				E4CAF4CF2BB9884000CB18EC /* MainTableViewCell.swift in Sources */,
-				E4CAF49D2BB9808300CB18EC /* SplashViewController.swift in Sources */,
 				E4CAF4CB2BB9884000CB18EC /* MainDetailViewController.swift in Sources */,
 				E4CAF4CC2BB9884000CB18EC /* MainDetailViewModel.swift in Sources */,
 				E4CAF4E52BBBC9F900CB18EC /* SearchCoin.swift in Sources */,

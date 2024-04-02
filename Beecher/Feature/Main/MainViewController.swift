@@ -13,6 +13,8 @@ import SnapKit
 class MainViewController: UIViewController {
     private let disposeBag = DisposeBag()
     private let mainViewModel = MainViewModel()
+    private var isLoadingData = false
+    private var timer: Timer?
     //검색
     private let searchBtn : UIButton = {
         let btn = UIButton()
@@ -45,6 +47,7 @@ class MainViewController: UIViewController {
         view.showsVerticalScrollIndicator = false
         view.showsHorizontalScrollIndicator = false
         view.clipsToBounds = true
+        view.isPagingEnabled = false
         view.register(MainTableViewCell.self, forCellReuseIdentifier: "Cell")
         return view
     }()
@@ -64,6 +67,7 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         setLayout()
         setBinding()
+        setupTimer()
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
@@ -120,8 +124,14 @@ extension MainViewController {
                 let offsetY = self.tableView.contentOffset.y
                 let contentHeight = self.tableView.contentSize.height
                 let screenHeight = self.tableView.frame.height
+                guard !self.isLoadingData else { return }
                 if offsetY > contentHeight - screenHeight {
-                    self.mainViewModel.loadMoreData()
+                    self.isLoadingData = true
+                    self.loadingIndicator.startAnimating()
+                    self.mainViewModel.loadMoreData() {
+                        self.isLoadingData = false
+                        self.loadingIndicator.stopAnimating()
+                    }
                 }
             })
             .disposed(by: disposeBag)
@@ -135,5 +145,13 @@ extension MainViewController {
                 self.navigationController?.pushViewController(SearchViewController(), animated: true)
             }
             .disposed(by: disposeBag)
+    }
+    private func setupTimer() {
+        timer = Timer.scheduledTimer(timeInterval: 60, target: self, selector: #selector(updateData), userInfo: nil, repeats: true)
+        timer?.fire()
+    }
+    
+    @objc private func updateData() {
+        mainViewModel.inputTrigger.onNext(())
     }
 }

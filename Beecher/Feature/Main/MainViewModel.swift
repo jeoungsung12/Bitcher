@@ -19,13 +19,12 @@ class MainViewModel {
     let searchResult : PublishSubject<[CoinDataWithAdditionalInfo]> = PublishSubject()
     //페이징 변수
     private let initialLoadStart = 0
-    private let initialLoadLimit = 3
+    private let initialLoadLimit = 5
     private var currentPage = 0
     
     init() {
         //MARK: - GetCoinInfo
         inputTrigger
-            .startWith(())
             .subscribe { _ in
                 CoinService.getAllCoin(start: self.initialLoadStart, limit: self.initialLoadLimit)
                     .map { coinData -> [[CoinDataWithAdditionalInfo]] in
@@ -35,25 +34,12 @@ class MainViewModel {
                     .disposed(by: self.disposeBag)
             }
             .disposed(by: disposeBag)
-        // 60초마다 새로운 데이터 가져오기
-        Observable<Int>.interval(.seconds(300), scheduler: MainScheduler.instance)
-            .subscribe(onNext: { _ in
-                self.inputTrigger.onNext(())
-            })
-            .disposed(by: disposeBag)
-        
-        
-        //MARK: - SearchCoinInfo
-        searchInputrigger.flatMapLatest { coinName in
-            return SearchCoin.searchCoin(searchName: coinName)
-        }
-        .bind(to: searchResult)
-        .disposed(by: disposeBag)
     }
-    func loadMoreData() {
+    func loadMoreData(completion: @escaping () -> Void) {
         currentPage += 1
-        let start = currentPage * 3
-        let limit = start + 3
+        let start = currentPage * 5
+        let limit = start + 5
+        print("첫 시작 \(start), \(limit)")
         if limit <= 100 {
             CoinService.getAllCoin(start: start, limit: limit)
                 .map { coinData -> [[CoinDataWithAdditionalInfo]] in
@@ -64,9 +50,11 @@ class MainViewModel {
                     var currentData = self.MainTable.value
                     currentData.append(contentsOf: newData)
                     self.MainTable.accept(currentData)
+                    completion()
                 })
                 .disposed(by: disposeBag)
-        }else{
+        } else {
+            completion()
             return
         }
     }

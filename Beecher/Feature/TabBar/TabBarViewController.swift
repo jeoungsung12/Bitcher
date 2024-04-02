@@ -20,7 +20,6 @@ class TabBarViewController : UITabBarController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tabBar.tintColor = .keyColor
         self.title = ""
         setupView()
         setBinding()
@@ -29,6 +28,11 @@ class TabBarViewController : UITabBarController {
 //MARK: - setup
 extension TabBarViewController {
     private func setupView() {
+        self.tabBar.backgroundColor = .TabColor
+        self.tabBar.tintColor = .keyColor
+        self.tabBar.barTintColor = .TabColor
+        self.tabBar.unselectedItemTintColor = .white
+        //탭바 설정
         let firstVC = MainViewController()
         firstVC.tabBarItem = UITabBarItem(title: nil, image: UIImage(systemName: "list.bullet"), tag: 0)
         let firstNavigationVC = UINavigationController(rootViewController: firstVC)

@@ -12,10 +12,14 @@ import SnapKit
 import UIKit
 import DGCharts
 
-class SearchViewController : UIViewController {
+class SearchViewController : UIViewController, UITextFieldDelegate {
     private let disposeBag = DisposeBag()
     private let searchViewModel = SearchViewModel()
     //MARK: UI Components
+    private lazy var tapGesture : UITapGestureRecognizer = {
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
+        return gesture
+    }()
     //검색 창
     private let searchView : UIView = {
         let view = UIView()
@@ -32,7 +36,7 @@ class SearchViewController : UIViewController {
         let text = UITextField()
         text.textColor = .black
         text.backgroundColor = .white
-        text.placeholder = "코인을 검색하세요!"
+        text.placeholder = "코인명(한/영)"
         text.textAlignment = .left
         text.font = UIFont.systemFont(ofSize: 15)
         text.frame = CGRect(x: 10, y: 3, width: 200, height: 30)
@@ -93,8 +97,9 @@ class SearchViewController : UIViewController {
         return label
     }()
     //코인 차트
-    private let chart : BarChartView = {
-        let view = BarChartView()
+    private let chart : LineChartView = {
+        let view = LineChartView()
+        view.isUserInteractionEnabled = false
         view.drawGridBackgroundEnabled = false
         view.xAxis.drawGridLinesEnabled = false
         view.leftAxis.drawGridLinesEnabled = false
@@ -102,10 +107,18 @@ class SearchViewController : UIViewController {
         view.doubleTapToZoomEnabled = false
         view.xAxis.labelPosition = .top
         view.xAxis.valueFormatter = IndexAxisValueFormatter(values: ["전일 종가, 저가, 고가, 시가"])
-        view.noDataText = "해당 코인을 찾을 수 없습니다⚠️"
-        view.noDataFont = UIFont.boldSystemFont(ofSize: 12)
-        view.noDataTextColor = .gray
+        view.xAxis.drawLabelsEnabled = false
+        view.leftAxis.drawLabelsEnabled = false
+        view.rightAxis.drawLabelsEnabled = false
+        view.noDataText = ""
         view.backgroundColor = .white
+        return view
+    }()
+    private let decText : UITextView = {
+        let view = UITextView()
+        view.textAlignment = .left
+        view.textColor = .gray
+        view.font = UIFont.systemFont(ofSize: 9)
         return view
     }()
     override func viewWillAppear(_ animated: Bool) {
@@ -131,12 +144,15 @@ extension SearchViewController {
         self.navigationItem.titleView = searchView
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: searchBtn)
         self.view.clipsToBounds = true
+        self.view.addGestureRecognizer(tapGesture)
+        self.searchText.delegate = self
         
         totalView.addSubview(titleLabel)
         totalView.addSubview(availLabel)
         totalView.addSubview(price)
         totalView.addSubview(arrow)
         totalView.addSubview(chart)
+        totalView.addSubview(decText)
         titleLabel.snp.makeConstraints { make in
             make.top.leading.equalToSuperview().inset(10)
             make.height.equalTo(15)
@@ -155,8 +171,15 @@ extension SearchViewController {
         }
         chart.snp.makeConstraints { make in
             make.top.equalTo(availLabel.snp.bottom).offset(10)
-            make.leading.trailing.equalToSuperview().inset(10)
+            make.trailing.equalToSuperview().inset(10)
+            make.leading.equalTo(arrow.snp.leading).offset(0)
             make.bottom.equalToSuperview().inset(0)
+        }
+        decText.snp.makeConstraints { make in
+            make.top.equalTo(availLabel.snp.bottom).offset(10)
+            make.leading.equalToSuperview().offset(10)
+            make.bottom.equalToSuperview().inset(0)
+            make.width.equalToSuperview().dividedBy(2.5)
         }
         self.view.addSubview(totalView)
         self.view.addSubview(loadingIndicator)
@@ -168,21 +191,26 @@ extension SearchViewController {
         }
         totalView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(20)
-            make.top.equalToSuperview().offset(self.view.frame.height / 10)
-            make.height.equalTo(280)
+            make.top.equalToSuperview().offset(self.view.frame.height / 8)
+            make.height.equalTo(150)
         }
     }
-    private func setBar(name : String, close : Double, low : Double, high : Double, open : Double) {
-        var entries: [BarChartDataEntry] = []
-        entries.append(BarChartDataEntry(x: 0, y: close))
-        entries.append(BarChartDataEntry(x: 1, y: low))
-        entries.append(BarChartDataEntry(x: 2, y: high))
-        entries.append(BarChartDataEntry(x: 3, y: open))
-        let dataSet = BarChartDataSet(entries: entries, label: name)
-        dataSet.colors = [.systemGray, .systemBlue, .systemRed, .systemGray2]
+    private func setChart(name: String, close: Double, low: Double, high: Double, open: Double, now : Double) {
+        var entries: [ChartDataEntry] = []
+        entries.append(ChartDataEntry(x: 0, y: close))
+        entries.append(ChartDataEntry(x: 1, y: low))
+        entries.append(ChartDataEntry(x: 2, y: high))
+        entries.append(ChartDataEntry(x: 3, y: open))
+        entries.append(ChartDataEntry(x: 4, y: now))
+        
+        let dataSet = LineChartDataSet(entries: entries, label: "")
+        dataSet.colors = [.graph3, .graph2, .graph1, .graph3, .graph3]
         dataSet.valueTextColor = .black
         dataSet.highlightEnabled = false
-        let data = BarChartData(dataSet: dataSet)
+        dataSet.circleRadius = 2.0
+        dataSet.circleColors = [.black]
+        dataSet.drawValuesEnabled = false
+        let data = LineChartData(dataSet: dataSet)
         
         chart.data = data
     }
@@ -199,7 +227,6 @@ extension SearchViewController {
         let low = model.compactMap{ $0.coinData.low_price } //저가
         let high = model.compactMap{ $0.coinData.high_price } //고가
         let open = model.compactMap{ $0.coinData.opening_price } //시가
-        setBar(name: coinName[0], close: close[0], low: low[0], high: high[0], open: open[0])
         
         titleLabel.text = "\(coinName[0]) \(coinMarket[0])"
         if trade_price[0] >= 10000 {
@@ -213,11 +240,21 @@ extension SearchViewController {
         }else if change[0] == "RISE" {
             arrow.textColor = .systemRed
             arrow.text = "+\(change_rate[0])% 📈"
+            setChart(name: coinName[0], close: close[0], low: low[0], high: high[0], open: open[0], now: trade_price[0])
         }else if change[0] == "FALL" {
             arrow.textColor = .systemBlue
             arrow.text = "-\(change_rate[0])% 📉"
+            setChart(name: coinName[0], close: close[0], low: low[0], high: high[0], open: open[0], now: trade_price[0])
         }
         availLabel.text = "24h : \(volume[0])"
+        decText.text = "전일 종가 : \(close[0])\n저가 : \(low[0])\n고가 : \(high[0])\n시가 : \(open[0])"
+    }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    @objc private func hideKeyboard() {
+        self.view.endEditing(true)
     }
 }
 //MARK: - setBinding
@@ -225,6 +262,7 @@ extension SearchViewController {
     private func setBinding() {
         searchBtn.rx.tap
             .subscribe { _ in
+                self.hideKeyboard()
                 if self.searchText.text != nil {
                     self.loadingIndicator.startAnimating()
                     self.searchViewModel.searchInputrigger.onNext((self.searchText.text ?? ""))
