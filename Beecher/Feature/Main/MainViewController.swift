@@ -67,6 +67,7 @@ extension MainViewController {
         self.navigationItem.titleView = titleLabel
         self.view.clipsToBounds = true
         self.view.backgroundColor = .white
+        self.title = ""
         
         self.tableView.addSubview(refresh)
         self.view.addSubview(tableView)
@@ -98,9 +99,9 @@ extension MainViewController {
                 self.refresh.endRefreshing()
             }
             .disposed(by: disposeBag)
-        tableView.rx.modelSelected(CoinData.self)
+        tableView.rx.modelSelected([CoinDataWithAdditionalInfo].self)
             .subscribe { selectedModel in
-                self.navigationController?.pushViewController(MainDetailViewController(notes: selectedModel), animated: true)
+                self.navigationController?.pushViewController(MainDetailViewController(coinData: selectedModel), animated: true)
             }
             .disposed(by: disposeBag)
         tableView.rx.didScroll

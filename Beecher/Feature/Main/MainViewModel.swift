@@ -31,7 +31,7 @@ class MainViewModel {
             }
             .disposed(by: disposeBag)
         // 60초마다 새로운 데이터 가져오기
-        Observable<Int>.interval(.seconds(60), scheduler: MainScheduler.instance)
+        Observable<Int>.interval(.seconds(300), scheduler: MainScheduler.instance)
             .subscribe(onNext: { _ in
                 self.inputTrigger.onNext(())
             })

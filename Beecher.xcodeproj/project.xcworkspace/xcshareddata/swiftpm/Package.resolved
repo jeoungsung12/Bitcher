@@ -10,6 +10,15 @@
       }
     },
     {
+      "identity" : "charts",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/danielgindi/Charts.git",
+      "state" : {
+        "revision" : "dd9c72e3d7e751e769971092a6bd72d39198ae63",
+        "version" : "5.1.0"
+      }
+    },
+    {
       "identity" : "kingfisher",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/onevcat/Kingfisher.git",
@@ -25,6 +34,15 @@
       "state" : {
         "revision" : "9dcaa4b333db437b0fbfaf453fad29069044a8b4",
         "version" : "6.6.0"
+      }
+    },
+    {
+      "identity" : "sclalertview-swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/vikmeup/SCLAlertView-Swift.git",
+      "state" : {
+        "revision" : "a36c9258dc623f368753a17d4bea4e0a751bc02f",
+        "version" : "0.8.2"
       }
     },
     {

@@ -55,7 +55,7 @@ class CoinService {
                         switch response.result {
                         case .success(let coinData):
                             if let coinName = data.korean_name{
-                                let coinDataWithAdditionalInfo = coinData.map { CoinDataWithAdditionalInfo(coinData: $0, coinName: "\(coinName) \(market)") }
+                                let coinDataWithAdditionalInfo = coinData.map { CoinDataWithAdditionalInfo(coinData: $0, coinName: coinName) }
                                 queue.sync {
                                     coinDataArray.append(coinDataWithAdditionalInfo)
                                 }

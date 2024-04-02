@@ -14,23 +14,16 @@ import SnapKit
 class MainDetailViewController : UIViewController {
     private let disposeBag = DisposeBag()
     private let mainDetailViewModel = MainDetailViewModel()
-    let notes : CoinData
-    init(notes : CoinData) {
-        self.notes = notes
+    let coinData : [CoinDataWithAdditionalInfo]
+    init(coinData : [CoinDataWithAdditionalInfo]) {
+        self.coinData = coinData
         super.init(nibName: nil, bundle: nil)
     }
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    //필기 뷰
-    private let textView : UIView = {
-        let view = UIView()
-        view.backgroundColor = .white
-        view.layer.cornerRadius = 10
-        return view
-    }()
     //필기 텍스트
-    private let text : UITextView = {
+    private let textview : UITextView = {
         let text = UITextView()
         text.isEditable = false
         text.textColor = .black
@@ -39,18 +32,10 @@ class MainDetailViewController : UIViewController {
         text.backgroundColor = .white
         return text
     }()
-    //필기 날짜
-    private let day : UILabel = {
-        let label = UILabel()
-        label.textColor = .black
-        label.font = UIFont.boldSystemFont(ofSize: 15)
-        label.textAlignment = .right
-        label.backgroundColor = .white
-        return label
-    }()
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
+        setCoinData()
         setLayout()
         setBinding()
     }
@@ -58,28 +43,25 @@ class MainDetailViewController : UIViewController {
 //MARK: - setLayout
 extension MainDetailViewController {
     private func setLayout() {
-        textView.addSubview(text)
-        textView.addSubview(day)
-        text.snp.makeConstraints { make in
-            make.leading.trailing.top.equalToSuperview().inset(10)
-            make.bottom.equalToSuperview().offset(-40)
-        }
-        day.snp.makeConstraints { make in
-            make.bottom.equalToSuperview().offset(-10)
-            make.trailing.equalToSuperview().offset(-20)
-            make.height.equalTo(20)
-        }
-        self.view.addSubview(textView)
-        textView.snp.makeConstraints { make in
+        self.view.addSubview(textview)
+        textview.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(20)
-            make.top.equalToSuperview().offset(self.view.frame.height / 8)
-            make.height.equalToSuperview().dividedBy(3)
+            make.top.equalToSuperview().offset(self.view.frame.height / 10)
+            make.bottom.equalToSuperview().inset(0)
         }
     }
 }
 //MARK: - setBinding
 extension MainDetailViewController {
     private func setBinding() {
+        
+    }
+    private func setCoinData() {
+        //코인 정보
+        let coinName = coinData.compactMap{ $0.coinName }
+        let coinMarket = coinData.compactMap{ $0.coinData.market }
+        self.title = "\(coinName[0]) \(coinMarket[0])"
+        
         
     }
 }
