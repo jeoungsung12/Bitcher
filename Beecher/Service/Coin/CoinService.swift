@@ -35,7 +35,6 @@ class CoinService {
             return Disposables.create()
         }
     }
-    
     private static func getDetail(_ Data: [GetAllCoinModel], start: Int, limit: Int, completion: @escaping (Result<[[CoinDataWithAdditionalInfo]], Error>) -> Void) {
         var coinDataArray: [[CoinDataWithAdditionalInfo]] = []
         let group = DispatchGroup()

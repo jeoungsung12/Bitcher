@@ -30,6 +30,9 @@
 		E4CAF4DC2BB9B61C00CB18EC /* GetAllCoinModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4CAF4DB2BB9B61C00CB18EC /* GetAllCoinModel.swift */; };
 		E4CAF4DF2BBBB6F800CB18EC /* DGCharts in Frameworks */ = {isa = PBXBuildFile; productRef = E4CAF4DE2BBBB6F800CB18EC /* DGCharts */; };
 		E4CAF4E22BBBB70800CB18EC /* SCLAlertView in Frameworks */ = {isa = PBXBuildFile; productRef = E4CAF4E12BBBB70800CB18EC /* SCLAlertView */; };
+		E4CAF4E52BBBC9F900CB18EC /* SearchCoin.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4CAF4E42BBBC9F900CB18EC /* SearchCoin.swift */; };
+		E4CAF4E92BBBCBA400CB18EC /* TabBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4CAF4E72BBBCBA400CB18EC /* TabBarViewModel.swift */; };
+		E4CAF4EA2BBBCBA400CB18EC /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4CAF4E82BBBCBA400CB18EC /* TabBarViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +53,9 @@
 		E4CAF4D22BB988A900CB18EC /* MainModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainModel.swift; sourceTree = "<group>"; };
 		E4CAF4D82BB9B2AD00CB18EC /* CoinService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinService.swift; sourceTree = "<group>"; };
 		E4CAF4DB2BB9B61C00CB18EC /* GetAllCoinModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAllCoinModel.swift; sourceTree = "<group>"; };
+		E4CAF4E42BBBC9F900CB18EC /* SearchCoin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCoin.swift; sourceTree = "<group>"; };
+		E4CAF4E72BBBCBA400CB18EC /* TabBarViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewModel.swift; sourceTree = "<group>"; };
+		E4CAF4E82BBBCBA400CB18EC /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +130,7 @@
 		E4CAF4AE2BB980C600CB18EC /* Feature */ = {
 			isa = PBXGroup;
 			children = (
+				E4CAF4E62BBBCBA400CB18EC /* TabBar */,
 				E4CAF4C42BB9884000CB18EC /* Main */,
 				E4CAF4C22BB986F300CB18EC /* Splash */,
 			);
@@ -186,7 +193,7 @@
 		E4CAF4D42BB9A77400CB18EC /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				E4CAF4D82BB9B2AD00CB18EC /* CoinService.swift */,
+				E4CAF4E32BBBC91400CB18EC /* Coin */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -197,6 +204,24 @@
 				E4CAF4DB2BB9B61C00CB18EC /* GetAllCoinModel.swift */,
 			);
 			path = Service;
+			sourceTree = "<group>";
+		};
+		E4CAF4E32BBBC91400CB18EC /* Coin */ = {
+			isa = PBXGroup;
+			children = (
+				E4CAF4D82BB9B2AD00CB18EC /* CoinService.swift */,
+				E4CAF4E42BBBC9F900CB18EC /* SearchCoin.swift */,
+			);
+			path = Coin;
+			sourceTree = "<group>";
+		};
+		E4CAF4E62BBBCBA400CB18EC /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				E4CAF4E72BBBCBA400CB18EC /* TabBarViewModel.swift */,
+				E4CAF4E82BBBCBA400CB18EC /* TabBarViewController.swift */,
+			);
+			path = TabBar;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -294,12 +319,15 @@
 				E4CAF49D2BB9808300CB18EC /* SplashViewController.swift in Sources */,
 				E4CAF4CB2BB9884000CB18EC /* MainDetailViewController.swift in Sources */,
 				E4CAF4CC2BB9884000CB18EC /* MainDetailViewModel.swift in Sources */,
+				E4CAF4E52BBBC9F900CB18EC /* SearchCoin.swift in Sources */,
 				E4CAF4C12BB9864100CB18EC /* Color + Extension.swift in Sources */,
 				E4CAF4992BB9808300CB18EC /* AppDelegate.swift in Sources */,
 				E4CAF4DC2BB9B61C00CB18EC /* GetAllCoinModel.swift in Sources */,
 				E4CAF49B2BB9808300CB18EC /* SceneDelegate.swift in Sources */,
 				E4CAF4D32BB988A900CB18EC /* MainModel.swift in Sources */,
 				E4CAF4CE2BB9884000CB18EC /* MainViewModel.swift in Sources */,
+				E4CAF4E92BBBCBA400CB18EC /* TabBarViewModel.swift in Sources */,
+				E4CAF4EA2BBBCBA400CB18EC /* TabBarViewController.swift in Sources */,
 				E4CAF4D92BB9B2AD00CB18EC /* CoinService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

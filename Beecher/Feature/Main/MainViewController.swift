@@ -13,6 +13,15 @@ import SnapKit
 class MainViewController: UIViewController {
     private let disposeBag = DisposeBag()
     private let mainViewModel = MainViewModel()
+    //검색
+    private let searchBtn : UIButton = {
+        let btn = UIButton()
+        btn.backgroundColor = .clear
+        btn.contentMode = .scaleAspectFit
+        btn.setImage(UIImage(systemName: "magnifyingglass"), for: .normal)
+        btn.tintColor = .keyColor
+        return btn
+    }()
     //타이틀
     private let titleLabel : UILabel = {
         let label = UILabel()
@@ -65,6 +74,7 @@ class MainViewController: UIViewController {
 extension MainViewController {
     private func setLayout() {
         self.navigationItem.titleView = titleLabel
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: searchBtn)
         self.view.clipsToBounds = true
         self.view.backgroundColor = .white
         self.title = ""
@@ -120,5 +130,10 @@ extension MainViewController {
                 self.mainViewModel.inputTrigger.onNext(())
             }
             .disposed(by: disposeBag)
+//        searchBtn.rx.controlEvent(.valueChanged)
+//            .subscribe { _ in
+//                <#code#>
+//            }
+//            .disposed(by: disposeBag)
     }
 }

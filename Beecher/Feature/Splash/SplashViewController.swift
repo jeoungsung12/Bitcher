@@ -36,7 +36,7 @@ extension SplashViewController {
 extension SplashViewController {
     private func DispatchNavigation() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            self.navigationController?.pushViewController(MainViewController(), animated: false)
+            self.navigationController?.pushViewController(TabBarViewController(), animated: false)
         }
     }
 }
