@@ -36,6 +36,9 @@
 		E4CAF4EF2BBBD04D00CB18EC /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4CAF4EE2BBBD04D00CB18EC /* SearchViewModel.swift */; };
 		E4DABEBC2BBC7A2200AE9DFB /* NVActivityIndicatorView in Frameworks */ = {isa = PBXBuildFile; productRef = E4DABEBB2BBC7A2200AE9DFB /* NVActivityIndicatorView */; };
 		E4DABEC32BBEA9E100AE9DFB /* Coin.gif in Resources */ = {isa = PBXBuildFile; fileRef = E4DABEC22BBEA9E100AE9DFB /* Coin.gif */; };
+		E4DABEC82BBEB19F00AE9DFB /* CandleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DABEC72BBEB19F00AE9DFB /* CandleService.swift */; };
+		E4DABECC2BBEB21C00AE9DFB /* CandleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DABECB2BBEB21C00AE9DFB /* CandleModel.swift */; };
+		E4DABECF2BBEB68E00AE9DFB /* iOSDropDown in Frameworks */ = {isa = PBXBuildFile; productRef = E4DABECE2BBEB68E00AE9DFB /* iOSDropDown */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,6 +64,8 @@
 		E4CAF4EC2BBBD04500CB18EC /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		E4CAF4EE2BBBD04D00CB18EC /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		E4DABEC22BBEA9E100AE9DFB /* Coin.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Coin.gif; sourceTree = "<group>"; };
+		E4DABEC72BBEB19F00AE9DFB /* CandleService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandleService.swift; sourceTree = "<group>"; };
+		E4DABECB2BBEB21C00AE9DFB /* CandleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandleModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +74,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E4CAF4D72BB9AE0900CB18EC /* Kingfisher in Frameworks */,
+				E4DABECF2BBEB68E00AE9DFB /* iOSDropDown in Frameworks */,
 				E4CAF4E22BBBB70800CB18EC /* SCLAlertView in Frameworks */,
 				E4DABEBC2BBC7A2200AE9DFB /* NVActivityIndicatorView in Frameworks */,
 				E4CAF4BC2BB982FD00CB18EC /* Alamofire in Frameworks */,
@@ -200,7 +206,8 @@
 		E4CAF4DA2BB9B4C000CB18EC /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				E4CAF4DB2BB9B61C00CB18EC /* GetAllCoinModel.swift */,
+				E4DABECA2BBEB21300AE9DFB /* Candle */,
+				E4DABEC92BBEB20A00AE9DFB /* CoinInfo */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -208,8 +215,9 @@
 		E4CAF4E32BBBC91400CB18EC /* Coin */ = {
 			isa = PBXGroup;
 			children = (
-				E4CAF4D82BB9B2AD00CB18EC /* CoinService.swift */,
-				E4CAF4E42BBBC9F900CB18EC /* SearchCoin.swift */,
+				E4DABEC62BBEB19100AE9DFB /* Candle */,
+				E4DABEC52BBEB18900AE9DFB /* Info */,
+				E4DABEC42BBEB17C00AE9DFB /* Search */,
 			);
 			path = Coin;
 			sourceTree = "<group>";
@@ -240,6 +248,46 @@
 			path = Gif;
 			sourceTree = "<group>";
 		};
+		E4DABEC42BBEB17C00AE9DFB /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				E4CAF4E42BBBC9F900CB18EC /* SearchCoin.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		E4DABEC52BBEB18900AE9DFB /* Info */ = {
+			isa = PBXGroup;
+			children = (
+				E4CAF4D82BB9B2AD00CB18EC /* CoinService.swift */,
+			);
+			path = Info;
+			sourceTree = "<group>";
+		};
+		E4DABEC62BBEB19100AE9DFB /* Candle */ = {
+			isa = PBXGroup;
+			children = (
+				E4DABEC72BBEB19F00AE9DFB /* CandleService.swift */,
+			);
+			path = Candle;
+			sourceTree = "<group>";
+		};
+		E4DABEC92BBEB20A00AE9DFB /* CoinInfo */ = {
+			isa = PBXGroup;
+			children = (
+				E4CAF4DB2BB9B61C00CB18EC /* GetAllCoinModel.swift */,
+			);
+			path = CoinInfo;
+			sourceTree = "<group>";
+		};
+		E4DABECA2BBEB21300AE9DFB /* Candle */ = {
+			isa = PBXGroup;
+			children = (
+				E4DABECB2BBEB21C00AE9DFB /* CandleModel.swift */,
+			);
+			path = Candle;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -266,6 +314,7 @@
 				E4CAF4DE2BBBB6F800CB18EC /* DGCharts */,
 				E4CAF4E12BBBB70800CB18EC /* SCLAlertView */,
 				E4DABEBB2BBC7A2200AE9DFB /* NVActivityIndicatorView */,
+				E4DABECE2BBEB68E00AE9DFB /* iOSDropDown */,
 			);
 			productName = Beecher;
 			productReference = E4CAF4952BB9808300CB18EC /* Beecher.app */;
@@ -304,6 +353,7 @@
 				E4CAF4DD2BBBB6F800CB18EC /* XCRemoteSwiftPackageReference "Charts" */,
 				E4CAF4E02BBBB70700CB18EC /* XCRemoteSwiftPackageReference "SCLAlertView-Swift" */,
 				E4DABEBA2BBC7A2200AE9DFB /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */,
+				E4DABECD2BBEB68D00AE9DFB /* XCRemoteSwiftPackageReference "iOSDropDown" */,
 			);
 			productRefGroup = E4CAF4962BB9808300CB18EC /* Products */;
 			projectDirPath = "";
@@ -340,9 +390,11 @@
 				E4CAF4E52BBBC9F900CB18EC /* SearchCoin.swift in Sources */,
 				E4CAF4C12BB9864100CB18EC /* Color + Extension.swift in Sources */,
 				E4CAF4992BB9808300CB18EC /* AppDelegate.swift in Sources */,
+				E4DABECC2BBEB21C00AE9DFB /* CandleModel.swift in Sources */,
 				E4CAF4DC2BB9B61C00CB18EC /* GetAllCoinModel.swift in Sources */,
 				E4CAF49B2BB9808300CB18EC /* SceneDelegate.swift in Sources */,
 				E4CAF4ED2BBBD04600CB18EC /* SearchViewController.swift in Sources */,
+				E4DABEC82BBEB19F00AE9DFB /* CandleService.swift in Sources */,
 				E4CAF4D32BB988A900CB18EC /* MainModel.swift in Sources */,
 				E4CAF4CE2BB9884000CB18EC /* MainViewModel.swift in Sources */,
 				E4CAF4E92BBBCBA400CB18EC /* TabBarViewModel.swift in Sources */,
@@ -634,6 +686,14 @@
 				minimumVersion = 5.0.0;
 			};
 		};
+		E4DABECD2BBEB68D00AE9DFB /* XCRemoteSwiftPackageReference "iOSDropDown" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/jriosdev/iOSDropDown.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.4.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -681,6 +741,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = E4DABEBA2BBC7A2200AE9DFB /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */;
 			productName = NVActivityIndicatorView;
+		};
+		E4DABECE2BBEB68E00AE9DFB /* iOSDropDown */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E4DABECD2BBEB68D00AE9DFB /* XCRemoteSwiftPackageReference "iOSDropDown" */;
+			productName = iOSDropDown;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

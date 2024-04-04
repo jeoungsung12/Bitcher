@@ -31,7 +31,7 @@ extension TabBarViewController {
         self.tabBar.backgroundColor = .keyColor
         self.tabBar.tintColor = .white
         self.tabBar.barTintColor = .keyColor
-        self.tabBar.unselectedItemTintColor = .graph3
+        self.tabBar.unselectedItemTintColor = .lightGray
         //탭바 설정
         let firstVC = MainViewController()
         firstVC.tabBarItem = UITabBarItem(title: nil, image: UIImage(systemName: "list.bullet"), tag: 0)
