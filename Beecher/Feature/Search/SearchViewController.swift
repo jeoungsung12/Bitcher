@@ -12,6 +12,7 @@ import SnapKit
 import UIKit
 import DGCharts
 import NVActivityIndicatorView
+import Kingfisher
 
 class SearchViewController : UIViewController, UITextFieldDelegate {
     private let disposeBag = DisposeBag()
@@ -51,8 +52,11 @@ class SearchViewController : UIViewController, UITextFieldDelegate {
         btn.tintColor = .keyColor
         return btn
     }()
-    private let loadingIndicator : NVActivityIndicatorView = {
-        let view = NVActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 30, height: 30), type: .ballBeat, color: .TabColor, padding: nil)
+    private let loadingIndicator : AnimatedImageView = {
+        let view = AnimatedImageView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
+        view.backgroundColor = .clear
+        view.contentMode = .scaleAspectFit
+        view.isUserInteractionEnabled = false
         return view
     }()
     //전체 뷰
@@ -275,5 +279,13 @@ extension SearchViewController {
                 self.loadingIndicator.stopAnimating()
             }
             .disposed(by: disposeBag)
+    }
+    private func startLoadingAnimation() {
+        if let gifUrl = Bundle.main.url(forResource: "coin", withExtension: "gif") {
+            self.loadingIndicator.kf.setImage(with: gifUrl)
+        }
+    }
+    private func stopLoadingAnimation() {
+        self.loadingIndicator.image = nil
     }
 }

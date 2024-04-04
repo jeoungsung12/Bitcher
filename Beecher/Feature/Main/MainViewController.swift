@@ -10,6 +10,7 @@ import RxSwift
 import RxCocoa
 import SnapKit
 import NVActivityIndicatorView
+import Kingfisher
 class MainViewController: UIViewController {
     private let disposeBag = DisposeBag()
     private let mainViewModel = MainViewModel()
@@ -55,8 +56,11 @@ class MainViewController: UIViewController {
         view.register(MainTableViewCell.self, forCellReuseIdentifier: "Cell")
         return view
     }()
-    private let loadingIndicator : NVActivityIndicatorView = {
-        let view = NVActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 30, height: 30), type: .ballBeat, color: .TabColor, padding: nil)
+    private let loadingIndicator : AnimatedImageView = {
+        let view = AnimatedImageView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
+        view.backgroundColor = .clear
+        view.contentMode = .scaleAspectFit
+        view.isUserInteractionEnabled = false
         return view
     }()
     override func viewWillAppear(_ animated: Bool) {
@@ -98,7 +102,7 @@ extension MainViewController {
             make.height.equalTo(30)
             make.center.equalToSuperview()
         }
-        self.loadingIndicator.startAnimating()
+        self.startLoadingAnimation()
     }
 }
 //MARK: - Binding
@@ -111,7 +115,7 @@ extension MainViewController {
                 cell.configure(with: model)
                 cell.selectionStyle = .none
                 cell.backgroundColor = .white
-                self.loadingIndicator.stopAnimating()
+                self.stopLoadingAnimation()
                 self.refresh.endRefreshing()
             }
             .disposed(by: disposeBag)
@@ -129,10 +133,10 @@ extension MainViewController {
                 guard !self.isLoadingData else { return }
                 if offsetY > contentHeight - screenHeight {
                     self.isLoadingData = true
-                    self.loadingIndicator.startAnimating()
+                    self.startLoadingAnimation()
                     self.mainViewModel.loadMoreData() {
                         self.isLoadingData = false
-                        self.loadingIndicator.stopAnimating()
+                        self.stopLoadingAnimation()
                     }
                 }
             })
@@ -152,8 +156,15 @@ extension MainViewController {
         timer = Timer.scheduledTimer(timeInterval: 60, target: self, selector: #selector(updateData), userInfo: nil, repeats: true)
         timer?.fire()
     }
-    
     @objc private func updateData() {
         mainViewModel.inputTrigger.onNext(())
+    }
+    private func startLoadingAnimation() {
+        if let gifUrl = Bundle.main.url(forResource: "coin", withExtension: "gif") {
+            self.loadingIndicator.kf.setImage(with: gifUrl)
+        }
+    }
+    private func stopLoadingAnimation() {
+        self.loadingIndicator.image = nil
     }
 }
