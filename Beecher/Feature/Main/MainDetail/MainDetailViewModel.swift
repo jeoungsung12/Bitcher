@@ -19,6 +19,9 @@ class MainDetailViewModel {
 
     let WMTrigger = PublishSubject<[String]>()
     let WMResult : PublishSubject<[CandleWMModel]> = PublishSubject()
+    
+    let tradeTrigger = PublishSubject<String>()
+    let tradeResult : PublishSubject<[TradesModel]> = PublishSubject()
     init() {
         MinuteTrigger.flatMapLatest { requestInfo in
             return CandleService.MinuteCandle(market: requestInfo[0], method: requestInfo[1])
@@ -36,6 +39,12 @@ class MainDetailViewModel {
             return CandleService.WMCandle(market: requestInfo[0], method: requestInfo[1])
         }
         .bind(to: WMResult)
+        .disposed(by: disposeBag)
+        
+        tradeTrigger.flatMapLatest { market in
+            return TradesService.MinuteCandle(market: market)
+        }
+        .bind(to: tradeResult)
         .disposed(by: disposeBag)
     }
 }

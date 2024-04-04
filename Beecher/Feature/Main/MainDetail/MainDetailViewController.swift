@@ -17,6 +17,8 @@ import iOSDropDown
 class MainDetailViewController : UIViewController {
     private let disposeBag = DisposeBag()
     private let mainDetailViewModel = MainDetailViewModel()
+    private var timer: Timer?
+    
     let coinData : [CoinDataWithAdditionalInfo]
     init(coinData : [CoinDataWithAdditionalInfo]) {
         self.coinData = coinData
@@ -133,6 +135,7 @@ class MainDetailViewController : UIViewController {
         text.isScrollEnabled = false
         text.clipsToBounds = true
         text.isUserInteractionEnabled = false
+        text.layer.borderWidth = 1
         return text
     }()
     override func viewWillAppear(_ animated: Bool) {
@@ -147,6 +150,7 @@ class MainDetailViewController : UIViewController {
         setCoinData()
         setBinding()
         setDropDown()
+        setupTimer()
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
@@ -201,9 +205,9 @@ extension MainDetailViewController {
             make.height.equalTo(50)
         }
         candleChart.snp.makeConstraints { make in
-            make.top.equalTo(dropdown.snp.bottom).offset(10)
+            make.top.equalTo(dropdown.snp.bottom).offset(20)
             make.leading.trailing.equalToSuperview().inset(30)
-            make.bottom.equalToSuperview().inset(70)
+            make.height.equalToSuperview().dividedBy(2)
         }
         candleChartView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(0)
@@ -249,7 +253,6 @@ extension MainDetailViewController {
         
         setChart(high: highest_52_week_price[0], highDate: highest_52_week_date[0], low: lowest_52_week_price[0], lowDate: lowest_52_week_date[0])
         rateText.text = "24h 누적 거래대금 : \(acc_trade_price_24h[0])\n24h 누적 거래량 : \(acc_trade_volume_24h[0])"
-        candleText.text = "📌 변화액 : \(change_price[0])\n📌 변화율 : \(change_rate[0])"
     }
     private func setCandleMinute(data : [CandleMinuteModel]) {
         var entries: [CandleChartDataEntry] = []
@@ -311,6 +314,14 @@ extension MainDetailViewController {
             }
         }
     }
+    private func setupTimer() {
+        timer = Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(updateData), userInfo: nil, repeats: true)
+        timer?.fire()
+    }
+    @objc private func updateData() {
+        let coinData = self.coinData.compactMap{ $0.coinData.market }
+        mainDetailViewModel.tradeTrigger.onNext((coinData[0]))
+    }
 }
 //MARK: - SetBinding
 extension MainDetailViewController {
@@ -332,5 +343,25 @@ extension MainDetailViewController {
                 self.setCandleWM(data: candleData)
             }
             .disposed(by: disposeBag)
+        
+        self.mainDetailViewModel.tradeTrigger.onNext(coinData[0])
+        self.mainDetailViewModel.tradeResult.subscribe { TradesData in
+            let trade_price = TradesData.element?.compactMap{ $0.trade_price }.first
+            let ask_bid = TradesData.element?.compactMap{ $0.ask_bid }.first
+            if ask_bid == "ASK"{
+                self.candleText.layer.borderColor = UIColor.red.cgColor
+                DispatchQueue.main.asyncAfter(deadline: .now()+1) {
+                    self.candleText.layer.borderColor = UIColor.BackColor.cgColor
+                }
+                self.candleText.text = "\(trade_price ?? 0)\n📈매수"
+            }else {
+                self.candleText.layer.borderColor = UIColor.blue.cgColor
+                DispatchQueue.main.asyncAfter(deadline: .now()+1) {
+                    self.candleText.layer.borderColor = UIColor.BackColor.cgColor
+                }
+                self.candleText.text = "\(trade_price ?? 0)\n📉매도"
+            }
+        }
+        .disposed(by: disposeBag)
     }
 }

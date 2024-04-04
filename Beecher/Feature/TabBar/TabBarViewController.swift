@@ -38,14 +38,18 @@ extension TabBarViewController {
         let firstNavigationVC = UINavigationController(rootViewController: firstVC)
         
         let secondVC = MainViewController()
-        secondVC.tabBarItem = UITabBarItem(title: nil, image: UIImage(systemName: "plus.circle"), tag: 1)
+        secondVC.tabBarItem = UITabBarItem(title: nil, image: UIImage(systemName: "puzzlepiece.fill"), tag: 1)
         let secondNavigationVC = UINavigationController(rootViewController: secondVC)
         
         let thirdVC = MainViewController()
-        thirdVC.tabBarItem = UITabBarItem(title: nil, image: UIImage(systemName: "person.fill"), tag: 2)
+        thirdVC.tabBarItem = UITabBarItem(title: nil, image: UIImage(systemName: "gamecontroller.fill"), tag: 2)
         let thirdNavigationVC = UINavigationController(rootViewController: thirdVC)
         
-        self.viewControllers = [firstNavigationVC, secondNavigationVC, thirdNavigationVC]
+        let forthVC = MainViewController()
+        forthVC.tabBarItem = UITabBarItem(title: nil, image: UIImage(systemName: "globe"), tag: 3)
+        let forthNavigationVC = UINavigationController(rootViewController: forthVC)
+        
+        self.viewControllers = [firstNavigationVC, secondNavigationVC, thirdNavigationVC, forthNavigationVC]
     }
 }
 //MARK: - setBinding

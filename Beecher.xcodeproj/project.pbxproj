@@ -39,6 +39,8 @@
 		E4DABEC82BBEB19F00AE9DFB /* CandleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DABEC72BBEB19F00AE9DFB /* CandleService.swift */; };
 		E4DABECC2BBEB21C00AE9DFB /* CandleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DABECB2BBEB21C00AE9DFB /* CandleModel.swift */; };
 		E4DABECF2BBEB68E00AE9DFB /* iOSDropDown in Frameworks */ = {isa = PBXBuildFile; productRef = E4DABECE2BBEB68E00AE9DFB /* iOSDropDown */; };
+		E4DABED22BBF0D0200AE9DFB /* TradesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DABED12BBF0D0200AE9DFB /* TradesModel.swift */; };
+		E4DABED52BBF0D3200AE9DFB /* TradesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DABED42BBF0D3200AE9DFB /* TradesService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +68,8 @@
 		E4DABEC22BBEA9E100AE9DFB /* Coin.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Coin.gif; sourceTree = "<group>"; };
 		E4DABEC72BBEB19F00AE9DFB /* CandleService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandleService.swift; sourceTree = "<group>"; };
 		E4DABECB2BBEB21C00AE9DFB /* CandleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandleModel.swift; sourceTree = "<group>"; };
+		E4DABED12BBF0D0200AE9DFB /* TradesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradesModel.swift; sourceTree = "<group>"; };
+		E4DABED42BBF0D3200AE9DFB /* TradesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradesService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -206,6 +210,7 @@
 		E4CAF4DA2BB9B4C000CB18EC /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				E4DABED02BBF0CE700AE9DFB /* Trades */,
 				E4DABECA2BBEB21300AE9DFB /* Candle */,
 				E4DABEC92BBEB20A00AE9DFB /* CoinInfo */,
 			);
@@ -215,6 +220,7 @@
 		E4CAF4E32BBBC91400CB18EC /* Coin */ = {
 			isa = PBXGroup;
 			children = (
+				E4DABED32BBF0D2600AE9DFB /* Trades */,
 				E4DABEC62BBEB19100AE9DFB /* Candle */,
 				E4DABEC52BBEB18900AE9DFB /* Info */,
 				E4DABEC42BBEB17C00AE9DFB /* Search */,
@@ -286,6 +292,22 @@
 				E4DABECB2BBEB21C00AE9DFB /* CandleModel.swift */,
 			);
 			path = Candle;
+			sourceTree = "<group>";
+		};
+		E4DABED02BBF0CE700AE9DFB /* Trades */ = {
+			isa = PBXGroup;
+			children = (
+				E4DABED12BBF0D0200AE9DFB /* TradesModel.swift */,
+			);
+			path = Trades;
+			sourceTree = "<group>";
+		};
+		E4DABED32BBF0D2600AE9DFB /* Trades */ = {
+			isa = PBXGroup;
+			children = (
+				E4DABED42BBF0D3200AE9DFB /* TradesService.swift */,
+			);
+			path = Trades;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -389,6 +411,7 @@
 				E4CAF4CC2BB9884000CB18EC /* MainDetailViewModel.swift in Sources */,
 				E4CAF4E52BBBC9F900CB18EC /* SearchCoin.swift in Sources */,
 				E4CAF4C12BB9864100CB18EC /* Color + Extension.swift in Sources */,
+				E4DABED52BBF0D3200AE9DFB /* TradesService.swift in Sources */,
 				E4CAF4992BB9808300CB18EC /* AppDelegate.swift in Sources */,
 				E4DABECC2BBEB21C00AE9DFB /* CandleModel.swift in Sources */,
 				E4CAF4DC2BB9B61C00CB18EC /* GetAllCoinModel.swift in Sources */,
@@ -396,6 +419,7 @@
 				E4CAF4ED2BBBD04600CB18EC /* SearchViewController.swift in Sources */,
 				E4DABEC82BBEB19F00AE9DFB /* CandleService.swift in Sources */,
 				E4CAF4D32BB988A900CB18EC /* MainModel.swift in Sources */,
+				E4DABED22BBF0D0200AE9DFB /* TradesModel.swift in Sources */,
 				E4CAF4CE2BB9884000CB18EC /* MainViewModel.swift in Sources */,
 				E4CAF4E92BBBCBA400CB18EC /* TabBarViewModel.swift in Sources */,
 				E4CAF4EF2BBBD04D00CB18EC /* SearchViewModel.swift in Sources */,
