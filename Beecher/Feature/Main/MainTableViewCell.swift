@@ -75,6 +75,7 @@ class MainTableViewCell : UITableViewCell {
         view.textAlignment = .left
         view.textColor = .gray
         view.font = UIFont.systemFont(ofSize: 9)
+        view.isEditable = false
         return view
     }()
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -178,6 +179,7 @@ extension MainTableViewCell {
         if change[0] == "EVEN"{
             arrow.textColor = .gray
             arrow.text = "보합"
+            chart.data = nil
         }else if change[0] == "RISE" {
             arrow.textColor = .systemRed
             arrow.text = "+\(change_rate[0])% 📈"

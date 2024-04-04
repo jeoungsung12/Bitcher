@@ -35,7 +35,7 @@
 		E4CAF4ED2BBBD04600CB18EC /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4CAF4EC2BBBD04500CB18EC /* SearchViewController.swift */; };
 		E4CAF4EF2BBBD04D00CB18EC /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4CAF4EE2BBBD04D00CB18EC /* SearchViewModel.swift */; };
 		E4DABEBC2BBC7A2200AE9DFB /* NVActivityIndicatorView in Frameworks */ = {isa = PBXBuildFile; productRef = E4DABEBB2BBC7A2200AE9DFB /* NVActivityIndicatorView */; };
-		E4DABEBF2BBE7DA900AE9DFB /* coin.gif in Resources */ = {isa = PBXBuildFile; fileRef = E4DABEBE2BBE7DA900AE9DFB /* coin.gif */; };
+		E4DABEC32BBEA9E100AE9DFB /* Coin.gif in Resources */ = {isa = PBXBuildFile; fileRef = E4DABEC22BBEA9E100AE9DFB /* Coin.gif */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,7 +60,7 @@
 		E4CAF4E82BBBCBA400CB18EC /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		E4CAF4EC2BBBD04500CB18EC /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		E4CAF4EE2BBBD04D00CB18EC /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
-		E4DABEBE2BBE7DA900AE9DFB /* coin.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = coin.gif; sourceTree = "<group>"; };
+		E4DABEC22BBEA9E100AE9DFB /* Coin.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Coin.gif; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -235,7 +235,7 @@
 		E4DABEBD2BBE7D9E00AE9DFB /* Gif */ = {
 			isa = PBXGroup;
 			children = (
-				E4DABEBE2BBE7DA900AE9DFB /* coin.gif */,
+				E4DABEC22BBEA9E100AE9DFB /* Coin.gif */,
 			);
 			path = Gif;
 			sourceTree = "<group>";
@@ -320,7 +320,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E4CAF4A52BB9808400CB18EC /* LaunchScreen.storyboard in Resources */,
-				E4DABEBF2BBE7DA900AE9DFB /* coin.gif in Resources */,
+				E4DABEC32BBEA9E100AE9DFB /* Coin.gif in Resources */,
 				E4CAF4A22BB9808400CB18EC /* Assets.xcassets in Resources */,
 				E4CAF4BF2BB9832A00CB18EC /* Color.xcassets in Resources */,
 			);

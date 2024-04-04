@@ -49,7 +49,7 @@ class MainViewController: UIViewController {
         let view = UITableView()
         view.backgroundColor = .white
         view.separatorStyle = .singleLine
-        view.showsVerticalScrollIndicator = false
+        view.showsVerticalScrollIndicator = true
         view.showsHorizontalScrollIndicator = false
         view.clipsToBounds = true
         view.isPagingEnabled = false
@@ -160,7 +160,7 @@ extension MainViewController {
         mainViewModel.inputTrigger.onNext(())
     }
     private func startLoadingAnimation() {
-        if let gifUrl = Bundle.main.url(forResource: "coin", withExtension: "gif") {
+        if let gifUrl = Bundle.main.url(forResource: "Coin", withExtension: "gif") {
             self.loadingIndicator.kf.setImage(with: gifUrl)
         }
     }

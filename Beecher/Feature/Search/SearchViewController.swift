@@ -17,6 +17,7 @@ import Kingfisher
 class SearchViewController : UIViewController, UITextFieldDelegate {
     private let disposeBag = DisposeBag()
     private let searchViewModel = SearchViewModel()
+    private var coinData : [CoinDataWithAdditionalInfo] = []
     //MARK: UI Components
     private lazy var tapGesture : UITapGestureRecognizer = {
         let gesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
@@ -121,8 +122,15 @@ class SearchViewController : UIViewController, UITextFieldDelegate {
         let view = UITextView()
         view.textAlignment = .left
         view.textColor = .gray
+        view.isEditable = false
         view.font = UIFont.systemFont(ofSize: 9)
         return view
+    }()
+    private let MoveBtn : UIButton = {
+        let btn = UIButton()
+        btn.backgroundColor = .clear
+        btn.clipsToBounds = true
+        return btn
     }()
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -186,6 +194,7 @@ extension SearchViewController {
         }
         self.view.addSubview(totalView)
         self.view.addSubview(loadingIndicator)
+        self.view.addSubview(MoveBtn)
         
         loadingIndicator.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(0)
@@ -193,6 +202,11 @@ extension SearchViewController {
             make.center.equalToSuperview()
         }
         totalView.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview().inset(20)
+            make.top.equalToSuperview().offset(self.view.frame.height / 8)
+            make.height.equalTo(150)
+        }
+        MoveBtn.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(20)
             make.top.equalToSuperview().offset(self.view.frame.height / 8)
             make.height.equalTo(150)
@@ -275,8 +289,14 @@ extension SearchViewController {
             .disposed(by: disposeBag)
         searchViewModel.searchResult
             .subscribe { coinData in
+                self.coinData = coinData
                 self.setValue(model: coinData)
                 self.loadingIndicator.stopAnimating()
+            }
+            .disposed(by: disposeBag)
+        MoveBtn.rx.controlEvent(.touchUpInside)
+            .subscribe { _ in
+                self.navigationController?.pushViewController(MainDetailViewController(coinData: self.coinData), animated: true)
             }
             .disposed(by: disposeBag)
     }
