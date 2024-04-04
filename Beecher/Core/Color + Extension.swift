@@ -24,4 +24,10 @@ extension UIColor {
     static let TabColor : UIColor = {
         return UIColor(named: "TabColor") ?? .white
     }()
+    static let BackColor : UIColor = {
+        return UIColor(named: "BackColor") ?? .white
+    }()
+    static let BackColor2 : UIColor = {
+        return UIColor(named: "BackColor2") ?? .white
+    }()
 }

@@ -76,6 +76,7 @@ class MainTableViewCell : UITableViewCell {
         view.textColor = .gray
         view.font = UIFont.systemFont(ofSize: 9)
         view.isEditable = false
+        view.isUserInteractionEnabled = false
         return view
     }()
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {

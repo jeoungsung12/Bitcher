@@ -17,7 +17,6 @@ import iOSDropDown
 class MainDetailViewController : UIViewController {
     private let disposeBag = DisposeBag()
     private let mainDetailViewModel = MainDetailViewModel()
-    private let dropdown = DropDown()
     let coinData : [CoinDataWithAdditionalInfo]
     init(coinData : [CoinDataWithAdditionalInfo]) {
         self.coinData = coinData
@@ -27,38 +26,47 @@ class MainDetailViewController : UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     //MARK: - UI Components
-    //필기 텍스트
+    private let titleLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .white
+        label.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
+        label.textAlignment = .center
+        label.backgroundColor = .clear
+        return label
+    }()
+    //텍스트
     private let rateText : UITextView = {
         let text = UITextView()
         text.isEditable = false
-        text.textColor = .gray
-        text.font = UIFont.systemFont(ofSize: 13)
+        text.textColor = .BackColor2
+        text.font = UIFont.boldSystemFont(ofSize: 13)
         text.textAlignment = .left
-        text.backgroundColor = .white
+        text.backgroundColor = .keyColor
         text.isScrollEnabled = false
         text.clipsToBounds = true
+        text.isUserInteractionEnabled = false
         return text
     }()
-    //차트 뷰
-    private let chartView : UIView = {
+    //막대차트 뷰
+    private let barChartView : UIView = {
         let view = UIView()
         view.clipsToBounds = true
-        view.backgroundColor = .keyColor
-        view.layer.cornerRadius = 20
+        view.backgroundColor = .BackColor2
+        view.layer.cornerRadius = 10
         view.layer.masksToBounds = true
         return view
     }()
-    private let chartTitle: UILabel = {
+    private let barChartTitle: UILabel = {
         let label = UILabel()
         label.text = "〽️52주 신고가, 신저가"
-        label.textColor = .white
+        label.textColor = .black
         label.font = UIFont.systemFont(ofSize: 13, weight: .semibold)
         label.textAlignment = .center
         label.backgroundColor = .clear
         return label
     }()
     //52주 차트
-    private let chart : BarChartView = {
+    private let barChart : BarChartView = {
         let view = BarChartView()
         view.isUserInteractionEnabled = false
         view.drawGridBackgroundEnabled = false
@@ -70,19 +78,42 @@ class MainDetailViewController : UIViewController {
         view.leftAxis.drawLabelsEnabled = false
         view.rightAxis.drawLabelsEnabled = false
         view.noDataText = ""
-        view.legend.textColor = .white
+        view.legend.textColor = .black
         view.backgroundColor = .clear
         return view
+    }()
+    //캔들차트뷰
+    private let candleChartView : UIView = {
+        let view = UIView()
+        view.clipsToBounds = true
+        view.backgroundColor = .BackColor
+        view.layer.cornerRadius = 30
+        view.layer.masksToBounds = true
+        return view
+    }()
+    //드롭다운
+    private let dropdown : DropDown = {
+        let dropdown = DropDown()
+        dropdown.optionArray = ["분", "일", "주", "월"]
+        dropdown.text = "일"
+        dropdown.isSearchEnable = false
+        dropdown.font = UIFont.systemFont(ofSize: 14)
+        dropdown.backgroundColor = .BackColor
+        dropdown.textColor = UIColor.black
+        dropdown.selectedRowColor = UIColor.keyColor
+        dropdown.arrowSize = 10
+        dropdown.checkMarkEnabled = false
+        return dropdown
     }()
     //캔들차트
     private let candleChart : CandleStickChartView = {
         let view = CandleStickChartView()
-        view.isUserInteractionEnabled = false
+        view.isUserInteractionEnabled = true
         view.drawGridBackgroundEnabled = false
         view.xAxis.drawGridLinesEnabled = false
         view.leftAxis.drawGridLinesEnabled = false
         view.rightAxis.drawGridLinesEnabled = false
-        view.doubleTapToZoomEnabled = false
+        view.doubleTapToZoomEnabled = true
         view.xAxis.drawLabelsEnabled = false
         view.leftAxis.drawLabelsEnabled = true
         view.rightAxis.drawLabelsEnabled = false
@@ -91,9 +122,24 @@ class MainDetailViewController : UIViewController {
         view.backgroundColor = .clear
         return view
     }()
+    //캔들텍스트
+    private let candleText : UITextView = {
+        let text = UITextView()
+        text.isEditable = false
+        text.textColor = .black
+        text.font = UIFont.boldSystemFont(ofSize: 12)
+        text.textAlignment = .left
+        text.backgroundColor = .BackColor
+        text.isScrollEnabled = false
+        text.clipsToBounds = true
+        text.isUserInteractionEnabled = false
+        return text
+    }()
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = true
+        self.navigationController?.navigationBar.backgroundColor = .keyColor
+        self.navigationController?.navigationBar.tintColor = .white
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -105,49 +151,64 @@ class MainDetailViewController : UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.tabBarController?.tabBar.isHidden = false
+        self.navigationController?.navigationBar.backgroundColor = .white
+        self.navigationController?.navigationBar.tintColor = .black
     }
 }
 //MARK: - UI Layout
 extension MainDetailViewController {
     private func setLayout() {
         self.view.clipsToBounds = true
-        self.view.backgroundColor = .white
+        self.view.backgroundColor = .keyColor
         self.view.addSubview(rateText)
         
-        self.chartView.addSubview(chartTitle)
-        self.chartView.addSubview(chart)
+        self.candleChartView.addSubview(dropdown)
+        self.candleChartView.addSubview(candleChart)
+        self.candleChartView.addSubview(candleText)
+        self.view.addSubview(candleChartView)
         
-        self.view.addSubview(chartView)
+        self.barChartView.addSubview(barChartTitle)
+        self.barChartView.addSubview(barChart)
+        self.view.addSubview(barChartView)
         
-        self.view.addSubview(dropdown)
-        self.view.addSubview(candleChart)
         rateText.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(30)
             make.top.equalToSuperview().offset(self.view.frame.height / 10)
             make.height.equalTo(50)
         }
-        chartTitle.snp.makeConstraints { make in
+        barChartTitle.snp.makeConstraints { make in
             make.top.leading.trailing.equalToSuperview().inset(20)
             make.height.equalTo(20)
         }
-        chart.snp.makeConstraints { make in
+        barChart.snp.makeConstraints { make in
             make.leading.bottom.trailing.equalToSuperview().inset(0)
-            make.top.equalTo(chartTitle.snp.bottom).offset(0)
+            make.top.equalTo(barChartTitle.snp.bottom).offset(0)
         }
-        chartView.snp.makeConstraints { make in
+        barChartView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(30)
             make.top.equalTo(rateText.snp.bottom).offset(30)
             make.height.equalToSuperview().dividedBy(4)
         }
         dropdown.snp.makeConstraints { make in
             make.trailing.equalToSuperview().inset(30)
-            make.top.equalTo(chartView.snp.bottom).offset(30)
+            make.top.equalTo(barChartView.snp.bottom).offset(30)
             make.height.equalTo(30)
-            make.width.equalTo(80)
+            make.width.equalTo(50)
+        }
+        candleText.snp.makeConstraints { make in
+            make.leading.equalToSuperview().inset(30)
+            make.top.equalTo(barChartView.snp.bottom).offset(30)
+            make.height.equalTo(50)
         }
         candleChart.snp.makeConstraints { make in
             make.top.equalTo(dropdown.snp.bottom).offset(10)
-            make.leading.trailing.bottom.equalToSuperview().inset(30)
+            make.leading.trailing.equalToSuperview().inset(30)
+            make.bottom.equalToSuperview().inset(70)
+        }
+        candleChartView.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview().inset(0)
+            make.bottom.equalToSuperview().offset(50)
+            make.top.equalTo(rateText.snp.bottom).offset(100)
         }
     }
 }
@@ -160,19 +221,20 @@ extension MainDetailViewController {
         
         let dataSet = BarChartDataSet(entries: entries, label: "신고가 : \(highDate), 신저가 : \(lowDate)")
         dataSet.colors = [.graph1, .graph2]
-        dataSet.valueTextColor = .white
+        dataSet.valueTextColor = .black
         dataSet.highlightEnabled = false
         dataSet.drawValuesEnabled = false
         dataSet.stackLabels = [highDate, lowDate]
         let data = BarChartData(dataSet: dataSet)
-        chart.animate(xAxisDuration: 0, yAxisDuration: 1.5, easingOption: .easeInOutQuad)
-        chart.data = data
+        barChart.animate(xAxisDuration: 0, yAxisDuration: 2, easingOption: .easeInOutQuad)
+        barChart.data = data
     }
     private func setCoinData() {
         //코인 정보
         let coinName = coinData.compactMap{ $0.coinName }
         let coinMarket = coinData.compactMap{ $0.coinData.market }
-        self.title = "\(coinName[0]) \(coinMarket[0])"
+        self.titleLabel.text = "\(coinName[0]) \(coinMarket[0])"
+        self.navigationItem.titleView = titleLabel
         
         //누적거래대금, 누적 거래량, 52주 신고가, 신고가 달성일, 신저가, 신저가 달성일
         let acc_trade_price_24h = coinData.compactMap{ $0.coinData.acc_trade_price_24h }
@@ -181,57 +243,61 @@ extension MainDetailViewController {
         let highest_52_week_date = coinData.compactMap{ $0.coinData.highest_52_week_date }
         let lowest_52_week_date = coinData.compactMap{ $0.coinData.lowest_52_week_date }
         let lowest_52_week_price = coinData.compactMap{ $0.coinData.lowest_52_week_price }
+        //변화율, 변화액
+        let change_price = coinData.compactMap{ $0.coinData.signed_change_price }
+        let change_rate = coinData.compactMap{ $0.coinData.signed_change_rate }
         
         setChart(high: highest_52_week_price[0], highDate: highest_52_week_date[0], low: lowest_52_week_price[0], lowDate: lowest_52_week_date[0])
         rateText.text = "24h 누적 거래대금 : \(acc_trade_price_24h[0])\n24h 누적 거래량 : \(acc_trade_volume_24h[0])"
+        candleText.text = "📌 변화액 : \(change_price[0])\n📌 변화율 : \(change_rate[0])"
     }
     private func setCandleMinute(data : [CandleMinuteModel]) {
         var entries: [CandleChartDataEntry] = []
+        var time_kst : String = ""
         for (index, candleData) in data.enumerated() {
             entries.append(CandleChartDataEntry(x: Double(index), shadowH: candleData.high_price ?? 0, shadowL: candleData.low_price ?? 0, open: candleData.opening_price ?? 0, close: candleData.trade_price ?? 0))
+            time_kst = candleData.candle_date_time_kst ?? ""
         }
         let dataSet = CandleChartDataSet(entries: entries, label: "캔들 차트")
         dataSet.colors = [.systemRed, .systemBlue]
         dataSet.drawValuesEnabled = false
         let data = CandleChartData(dataSet: dataSet)
-        
+        candleChart.animate(xAxisDuration: 2, yAxisDuration: 0, easingOption: .easeInQuad)
+        candleChart.chartDescription.text = "\(time_kst) ~ 현재"
         candleChart.data = data
     }
     private func setCandleDay(data : [CandleDayModel]) {
         var entries: [CandleChartDataEntry] = []
+        var time_kst : String = ""
         for (index, candleData) in data.enumerated() {
             entries.append(CandleChartDataEntry(x: Double(index), shadowH: candleData.high_price ?? 0, shadowL: candleData.low_price ?? 0, open: candleData.opening_price ?? 0, close: candleData.trade_price ?? 0))
+            time_kst = candleData.candle_date_time_kst ?? ""
         }
         let dataSet = CandleChartDataSet(entries: entries, label: "캔들 차트")
         dataSet.colors = [.systemRed, .systemBlue]
         dataSet.drawValuesEnabled = false
         let data = CandleChartData(dataSet: dataSet)
         candleChart.animate(xAxisDuration: 2, yAxisDuration: 0, easingOption: .easeInQuad)
+        candleChart.chartDescription.text = "\(time_kst) ~ 현재"
         candleChart.data = data
     }
     private func setCandleWM(data : [CandleWMModel]) {
         var entries: [CandleChartDataEntry] = []
+        var time_kst : String = ""
         for (index, candleData) in data.enumerated() {
             entries.append(CandleChartDataEntry(x: Double(index), shadowH: candleData.high_price ?? 0, shadowL: candleData.low_price ?? 0, open: candleData.opening_price ?? 0, close: candleData.trade_price ?? 0))
+            time_kst = candleData.candle_date_time_kst ?? ""
         }
         let dataSet = CandleChartDataSet(entries: entries, label: "캔들 차트")
         dataSet.colors = [.systemRed, .systemBlue]
         dataSet.drawValuesEnabled = false
         let data = CandleChartData(dataSet: dataSet)
         candleChart.animate(xAxisDuration: 2, yAxisDuration: 0, easingOption: .easeInQuad)
+        candleChart.chartDescription.text = "\(time_kst) ~ 현재"
         candleChart.data = data
     }
     private func setDropDown() {
         let coinData = self.coinData.compactMap{ $0.coinData.market }
-        dropdown.optionArray = ["분", "일", "주", "월"]
-        dropdown.isSearchEnable = false
-        dropdown.text = "일"
-        dropdown.font = UIFont.systemFont(ofSize: 14)
-        dropdown.textColor = UIColor.black
-        dropdown.selectedRowColor = UIColor.keyColor
-        dropdown.arrowSize = 10
-        dropdown.checkMarkEnabled = false
-        dropdown.backgroundColor = UIColor.white
         // 선택한 항목에 대한 이벤트 처리
         dropdown.didSelect { (selectedItem, index, id) in
             if index == 0 {

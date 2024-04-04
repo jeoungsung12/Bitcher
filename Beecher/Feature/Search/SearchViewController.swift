@@ -124,6 +124,7 @@ class SearchViewController : UIViewController, UITextFieldDelegate {
         view.textColor = .gray
         view.isEditable = false
         view.font = UIFont.systemFont(ofSize: 9)
+        view.isUserInteractionEnabled = false
         return view
     }()
     private let MoveBtn : UIButton = {
