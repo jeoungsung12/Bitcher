@@ -227,7 +227,7 @@ extension MainDetailViewController {
         dataSet.colors = [.graph1, .graph2]
         dataSet.valueTextColor = .black
         dataSet.highlightEnabled = false
-        dataSet.drawValuesEnabled = false
+        dataSet.drawValuesEnabled = true
         dataSet.stackLabels = [highDate, lowDate]
         let data = BarChartData(dataSet: dataSet)
         barChart.animate(xAxisDuration: 0, yAxisDuration: 2, easingOption: .easeInOutQuad)
@@ -247,9 +247,6 @@ extension MainDetailViewController {
         let highest_52_week_date = coinData.compactMap{ $0.coinData.highest_52_week_date }
         let lowest_52_week_date = coinData.compactMap{ $0.coinData.lowest_52_week_date }
         let lowest_52_week_price = coinData.compactMap{ $0.coinData.lowest_52_week_price }
-        //변화율, 변화액
-        let change_price = coinData.compactMap{ $0.coinData.signed_change_price }
-        let change_rate = coinData.compactMap{ $0.coinData.signed_change_rate }
         
         setChart(high: highest_52_week_price[0], highDate: highest_52_week_date[0], low: lowest_52_week_price[0], lowDate: lowest_52_week_date[0])
         rateText.text = "24h 누적 거래대금 : \(acc_trade_price_24h[0])\n24h 누적 거래량 : \(acc_trade_volume_24h[0])"
