@@ -41,6 +41,10 @@
 		E4DABECF2BBEB68E00AE9DFB /* iOSDropDown in Frameworks */ = {isa = PBXBuildFile; productRef = E4DABECE2BBEB68E00AE9DFB /* iOSDropDown */; };
 		E4DABED22BBF0D0200AE9DFB /* TradesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DABED12BBF0D0200AE9DFB /* TradesModel.swift */; };
 		E4DABED52BBF0D3200AE9DFB /* TradesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DABED42BBF0D3200AE9DFB /* TradesService.swift */; };
+		E4DABED82BBF15C600AE9DFB /* OrderBookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DABED72BBF15C600AE9DFB /* OrderBookViewController.swift */; };
+		E4DABEDA2BBF16D800AE9DFB /* OrderBookTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DABED92BBF16D800AE9DFB /* OrderBookTableViewCell.swift */; };
+		E4DABEDC2BBF174800AE9DFB /* OrderBookViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DABEDB2BBF174800AE9DFB /* OrderBookViewModel.swift */; };
+		E4DABEE02BBF17A600AE9DFB /* OrderBookService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DABEDF2BBF17A600AE9DFB /* OrderBookService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,6 +74,10 @@
 		E4DABECB2BBEB21C00AE9DFB /* CandleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandleModel.swift; sourceTree = "<group>"; };
 		E4DABED12BBF0D0200AE9DFB /* TradesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradesModel.swift; sourceTree = "<group>"; };
 		E4DABED42BBF0D3200AE9DFB /* TradesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradesService.swift; sourceTree = "<group>"; };
+		E4DABED72BBF15C600AE9DFB /* OrderBookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderBookViewController.swift; sourceTree = "<group>"; };
+		E4DABED92BBF16D800AE9DFB /* OrderBookTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderBookTableViewCell.swift; sourceTree = "<group>"; };
+		E4DABEDB2BBF174800AE9DFB /* OrderBookViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderBookViewModel.swift; sourceTree = "<group>"; };
+		E4DABEDF2BBF17A600AE9DFB /* OrderBookService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderBookService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,7 +154,7 @@
 		E4CAF4AE2BB980C600CB18EC /* Feature */ = {
 			isa = PBXGroup;
 			children = (
-				E4CAF4EB2BBBD03800CB18EC /* Search */,
+				E4DABED62BBF155A00AE9DFB /* OrderBook */,
 				E4CAF4E62BBBCBA400CB18EC /* TabBar */,
 				E4CAF4C42BB9884000CB18EC /* Main */,
 			);
@@ -165,6 +173,7 @@
 		E4CAF4C42BB9884000CB18EC /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				E4CAF4EB2BBBD03800CB18EC /* Search */,
 				E4CAF4C52BB9884000CB18EC /* MainDetail */,
 				E4CAF4C82BB9884000CB18EC /* MainViewController.swift */,
 				E4CAF4C92BB9884000CB18EC /* MainViewModel.swift */,
@@ -220,6 +229,7 @@
 		E4CAF4E32BBBC91400CB18EC /* Coin */ = {
 			isa = PBXGroup;
 			children = (
+				E4DABEDE2BBF177500AE9DFB /* OrderBook */,
 				E4DABED32BBF0D2600AE9DFB /* Trades */,
 				E4DABEC62BBEB19100AE9DFB /* Candle */,
 				E4DABEC52BBEB18900AE9DFB /* Info */,
@@ -308,6 +318,32 @@
 				E4DABED42BBF0D3200AE9DFB /* TradesService.swift */,
 			);
 			path = Trades;
+			sourceTree = "<group>";
+		};
+		E4DABED62BBF155A00AE9DFB /* OrderBook */ = {
+			isa = PBXGroup;
+			children = (
+				E4DABEDD2BBF174E00AE9DFB /* OrderBookDetail */,
+				E4DABED72BBF15C600AE9DFB /* OrderBookViewController.swift */,
+				E4DABED92BBF16D800AE9DFB /* OrderBookTableViewCell.swift */,
+				E4DABEDB2BBF174800AE9DFB /* OrderBookViewModel.swift */,
+			);
+			path = OrderBook;
+			sourceTree = "<group>";
+		};
+		E4DABEDD2BBF174E00AE9DFB /* OrderBookDetail */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = OrderBookDetail;
+			sourceTree = "<group>";
+		};
+		E4DABEDE2BBF177500AE9DFB /* OrderBook */ = {
+			isa = PBXGroup;
+			children = (
+				E4DABEDF2BBF17A600AE9DFB /* OrderBookService.swift */,
+			);
+			path = OrderBook;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -406,11 +442,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				E4CAF4CD2BB9884000CB18EC /* MainViewController.swift in Sources */,
+				E4DABED82BBF15C600AE9DFB /* OrderBookViewController.swift in Sources */,
 				E4CAF4CF2BB9884000CB18EC /* MainTableViewCell.swift in Sources */,
 				E4CAF4CB2BB9884000CB18EC /* MainDetailViewController.swift in Sources */,
 				E4CAF4CC2BB9884000CB18EC /* MainDetailViewModel.swift in Sources */,
 				E4CAF4E52BBBC9F900CB18EC /* SearchCoin.swift in Sources */,
 				E4CAF4C12BB9864100CB18EC /* Color + Extension.swift in Sources */,
+				E4DABEDA2BBF16D800AE9DFB /* OrderBookTableViewCell.swift in Sources */,
+				E4DABEDC2BBF174800AE9DFB /* OrderBookViewModel.swift in Sources */,
+				E4DABEE02BBF17A600AE9DFB /* OrderBookService.swift in Sources */,
 				E4DABED52BBF0D3200AE9DFB /* TradesService.swift in Sources */,
 				E4CAF4992BB9808300CB18EC /* AppDelegate.swift in Sources */,
 				E4DABECC2BBEB21C00AE9DFB /* CandleModel.swift in Sources */,

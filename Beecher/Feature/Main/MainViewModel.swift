@@ -14,9 +14,6 @@ class MainViewModel {
     let inputTrigger = PublishSubject<Void>()
     let MainTable: BehaviorRelay<[[CoinDataWithAdditionalInfo]]> = BehaviorRelay(value: [])
     
-    //검색
-    let searchInputrigger = PublishSubject<String>()
-    let searchResult : PublishSubject<[CoinDataWithAdditionalInfo]> = PublishSubject()
     //페이징 변수
     private let initialLoadStart = 0
     private let initialLoadLimit = 15

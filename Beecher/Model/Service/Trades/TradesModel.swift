@@ -18,3 +18,7 @@ struct TradesModel : Codable {
     let ask_bid : String?
     let sequential_id : Double?
 }
+struct AddTradesModel : Codable {
+    let tradesData: TradesModel
+    let coinName: String
+}

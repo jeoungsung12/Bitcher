@@ -42,7 +42,7 @@ class MainDetailViewModel {
         .disposed(by: disposeBag)
         
         tradeTrigger.flatMapLatest { market in
-            return TradesService.MinuteCandle(market: market)
+            return TradesService.getTrades(market: market)
         }
         .bind(to: tradeResult)
         .disposed(by: disposeBag)

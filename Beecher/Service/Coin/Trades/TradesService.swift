@@ -11,7 +11,7 @@ import RxCocoa
 import Alamofire
 
 class TradesService {
-    static func MinuteCandle(market : String) -> Observable<[TradesModel]> {
+    static func getTrades(market : String) -> Observable<[TradesModel]> {
         return Observable.create { observer in
             let url = "https://api.upbit.com/v1/trades/ticks?market=\(market)&count=1"
             AF.request(url, method: .get, encoding: JSONEncoding.default, headers: ["accept" : "application/json"])

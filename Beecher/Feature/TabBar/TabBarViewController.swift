@@ -37,7 +37,7 @@ extension TabBarViewController {
         firstVC.tabBarItem = UITabBarItem(title: nil, image: UIImage(systemName: "list.bullet"), tag: 0)
         let firstNavigationVC = UINavigationController(rootViewController: firstVC)
         
-        let secondVC = MainViewController()
+        let secondVC = OrderBookViewController()
         secondVC.tabBarItem = UITabBarItem(title: nil, image: UIImage(systemName: "puzzlepiece.fill"), tag: 1)
         let secondNavigationVC = UINavigationController(rootViewController: secondVC)
         
