@@ -71,7 +71,7 @@ class OrderBookDetailViewController : UIViewController {
         let text = UITextView()
         text.isEditable = false
         text.textColor = .white
-        text.font = UIFont.boldSystemFont(ofSize: 12)
+        text.font = UIFont.boldSystemFont(ofSize: 10)
         text.textAlignment = .left
         text.backgroundColor = .clear
         text.isScrollEnabled = false
