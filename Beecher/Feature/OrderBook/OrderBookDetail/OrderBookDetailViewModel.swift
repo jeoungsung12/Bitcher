@@ -14,11 +14,19 @@ class OrderBookDetailViewModel {
     let imageTrigger = PublishSubject<String>()
     let imageResult : PublishSubject<GetImageModel> = PublishSubject()
     
+    let orderBookTrigger = PublishSubject<String>()
+    let orderBookResult : PublishSubject<[OrderBookModel]> = PublishSubject()
     init() {
         imageTrigger.flatMapLatest { name in
             return GetImageService.getCoin(englishName: name)
         }
         .bind(to: imageResult)
+        .disposed(by: disposeBag)
+        
+        orderBookTrigger.flatMapLatest { market in
+            return OrderBookService.getOrderBook(market: market)
+        }
+        .bind(to: orderBookResult)
         .disposed(by: disposeBag)
     }
 }

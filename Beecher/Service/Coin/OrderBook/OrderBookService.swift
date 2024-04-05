@@ -37,12 +37,13 @@ class OrderBookService {
     }
     //쓰레드 풀
     private static let threadPool = DispatchQueue(label: "com.example.coinDataThreadPool", attributes: .concurrent)
+    //체결보기
     private static func getDetail(_ data: [GetAllCoinModel], start: Int, limit: Int, delayInterval: TimeInterval, completion: @escaping (Result<[[AddTradesModel]], Error>) -> Void) {
         var coinDataArray: [[AddTradesModel]] = []
         let group = DispatchGroup()
 
         let slicedData = data[start..<limit]
-        print("시작 \(start), 끝 \(limit)")
+//        print("시작 \(start), 끝 \(limit)")
 
         for (index, coinModel) in slicedData.enumerated() {
             if let market = coinModel.market {
@@ -72,6 +73,24 @@ class OrderBookService {
         }
         group.notify(queue: .main) {
             completion(.success(coinDataArray))
+        }
+    }
+    //호가 정보조회
+    static func getOrderBook(market : String) -> Observable<[OrderBookModel]> {
+        return Observable.create { observer in
+            let url = "https://api.upbit.com/v1/orderbook?markets=\(market)"
+            AF.request(url, method: .get, encoding: JSONEncoding.default, headers: ["accept" : "application/json"])
+                .validate()
+                .responseDecodable(of: [OrderBookModel].self) { response in
+                    switch response.result {
+                    case .success(let data):
+                        observer.onNext(data)
+                        observer.onCompleted()
+                    case .failure(let error):
+                        observer.onError(error)
+                    }
+                }
+            return Disposables.create()
         }
     }
 }

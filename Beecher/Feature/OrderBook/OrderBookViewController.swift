@@ -131,7 +131,7 @@ extension OrderBookViewController {
             .disposed(by: disposeBag)
         searchBtn.rx.tap
             .subscribe { _ in
-                self.navigationController?.pushViewController(SearchViewController(), animated: true)
+                self.navigationController?.pushViewController(OrderSearchViewController(), animated: true)
             }
             .disposed(by: disposeBag)
     }

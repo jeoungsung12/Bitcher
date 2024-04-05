@@ -43,7 +43,7 @@ class CoinService {
         let group = DispatchGroup()
 
         let slicedData = data[start..<limit]
-        print("시작 \(start), 끝 \(limit)")
+//        print("시작 \(start), 끝 \(limit)")
 
         for (index, coinModel) in slicedData.enumerated() {
             if let market = coinModel.market {
