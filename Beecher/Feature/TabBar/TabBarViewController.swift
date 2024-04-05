@@ -38,11 +38,11 @@ extension TabBarViewController {
         let firstNavigationVC = UINavigationController(rootViewController: firstVC)
         
         let secondVC = OrderBookViewController()
-        secondVC.tabBarItem = UITabBarItem(title: nil, image: UIImage(systemName: "puzzlepiece.fill"), tag: 1)
+        secondVC.tabBarItem = UITabBarItem(title: nil, image: UIImage(systemName: "creditcard.fill"), tag: 1)
         let secondNavigationVC = UINavigationController(rootViewController: secondVC)
         
         let thirdVC = MainViewController()
-        thirdVC.tabBarItem = UITabBarItem(title: nil, image: UIImage(systemName: "gamecontroller.fill"), tag: 2)
+        thirdVC.tabBarItem = UITabBarItem(title: nil, image: UIImage(systemName: "target"), tag: 2)
         let thirdNavigationVC = UINavigationController(rootViewController: thirdVC)
         
         let forthVC = MainViewController()

@@ -45,6 +45,10 @@
 		E4DABEDA2BBF16D800AE9DFB /* OrderBookTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DABED92BBF16D800AE9DFB /* OrderBookTableViewCell.swift */; };
 		E4DABEDC2BBF174800AE9DFB /* OrderBookViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DABEDB2BBF174800AE9DFB /* OrderBookViewModel.swift */; };
 		E4DABEE02BBF17A600AE9DFB /* OrderBookService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DABEDF2BBF17A600AE9DFB /* OrderBookService.swift */; };
+		E4DABEE22BBFB67600AE9DFB /* OrderBookDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DABEE12BBFB67600AE9DFB /* OrderBookDetailViewController.swift */; };
+		E4DABEE42BBFB68700AE9DFB /* OrderBookDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DABEE32BBFB68700AE9DFB /* OrderBookDetailViewModel.swift */; };
+		E4DABEE62BBFBC8900AE9DFB /* GetImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DABEE52BBFBC8900AE9DFB /* GetImageService.swift */; };
+		E4DABEE82BBFBDB800AE9DFB /* GetPaprikaModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DABEE72BBFBDB800AE9DFB /* GetPaprikaModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -78,6 +82,10 @@
 		E4DABED92BBF16D800AE9DFB /* OrderBookTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderBookTableViewCell.swift; sourceTree = "<group>"; };
 		E4DABEDB2BBF174800AE9DFB /* OrderBookViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderBookViewModel.swift; sourceTree = "<group>"; };
 		E4DABEDF2BBF17A600AE9DFB /* OrderBookService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderBookService.swift; sourceTree = "<group>"; };
+		E4DABEE12BBFB67600AE9DFB /* OrderBookDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderBookDetailViewController.swift; sourceTree = "<group>"; };
+		E4DABEE32BBFB68700AE9DFB /* OrderBookDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderBookDetailViewModel.swift; sourceTree = "<group>"; };
+		E4DABEE52BBFBC8900AE9DFB /* GetImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetImageService.swift; sourceTree = "<group>"; };
+		E4DABEE72BBFBDB800AE9DFB /* GetPaprikaModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPaprikaModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -308,6 +316,7 @@
 			isa = PBXGroup;
 			children = (
 				E4DABED12BBF0D0200AE9DFB /* TradesModel.swift */,
+				E4DABEE72BBFBDB800AE9DFB /* GetPaprikaModel.swift */,
 			);
 			path = Trades;
 			sourceTree = "<group>";
@@ -334,6 +343,8 @@
 		E4DABEDD2BBF174E00AE9DFB /* OrderBookDetail */ = {
 			isa = PBXGroup;
 			children = (
+				E4DABEE12BBFB67600AE9DFB /* OrderBookDetailViewController.swift */,
+				E4DABEE32BBFB68700AE9DFB /* OrderBookDetailViewModel.swift */,
 			);
 			path = OrderBookDetail;
 			sourceTree = "<group>";
@@ -342,6 +353,7 @@
 			isa = PBXGroup;
 			children = (
 				E4DABEDF2BBF17A600AE9DFB /* OrderBookService.swift */,
+				E4DABEE52BBFBC8900AE9DFB /* GetImageService.swift */,
 			);
 			path = OrderBook;
 			sourceTree = "<group>";
@@ -446,11 +458,14 @@
 				E4CAF4CF2BB9884000CB18EC /* MainTableViewCell.swift in Sources */,
 				E4CAF4CB2BB9884000CB18EC /* MainDetailViewController.swift in Sources */,
 				E4CAF4CC2BB9884000CB18EC /* MainDetailViewModel.swift in Sources */,
+				E4DABEE82BBFBDB800AE9DFB /* GetPaprikaModel.swift in Sources */,
+				E4DABEE42BBFB68700AE9DFB /* OrderBookDetailViewModel.swift in Sources */,
 				E4CAF4E52BBBC9F900CB18EC /* SearchCoin.swift in Sources */,
 				E4CAF4C12BB9864100CB18EC /* Color + Extension.swift in Sources */,
 				E4DABEDA2BBF16D800AE9DFB /* OrderBookTableViewCell.swift in Sources */,
 				E4DABEDC2BBF174800AE9DFB /* OrderBookViewModel.swift in Sources */,
 				E4DABEE02BBF17A600AE9DFB /* OrderBookService.swift in Sources */,
+				E4DABEE22BBFB67600AE9DFB /* OrderBookDetailViewController.swift in Sources */,
 				E4DABED52BBF0D3200AE9DFB /* TradesService.swift in Sources */,
 				E4CAF4992BB9808300CB18EC /* AppDelegate.swift in Sources */,
 				E4DABECC2BBEB21C00AE9DFB /* CandleModel.swift in Sources */,
@@ -462,6 +477,7 @@
 				E4DABED22BBF0D0200AE9DFB /* TradesModel.swift in Sources */,
 				E4CAF4CE2BB9884000CB18EC /* MainViewModel.swift in Sources */,
 				E4CAF4E92BBBCBA400CB18EC /* TabBarViewModel.swift in Sources */,
+				E4DABEE62BBFBC8900AE9DFB /* GetImageService.swift in Sources */,
 				E4CAF4EF2BBBD04D00CB18EC /* SearchViewModel.swift in Sources */,
 				E4CAF4EA2BBBCBA400CB18EC /* TabBarViewController.swift in Sources */,
 				E4CAF4D92BB9B2AD00CB18EC /* CoinService.swift in Sources */,

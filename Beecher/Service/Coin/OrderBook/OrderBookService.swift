@@ -56,8 +56,9 @@ class OrderBookService {
                             defer { group.leave() }
                             switch response.result {
                             case .success(let coinData):
-                                if let coinName = coinModel.korean_name {
-                                    let coinDataWithAdditionalInfo = coinData.map { AddTradesModel(tradesData: $0, coinName: coinName) }
+                                if let coinName = coinModel.korean_name,
+                                   let englishName = coinModel.english_name{
+                                    let coinDataWithAdditionalInfo = coinData.map { AddTradesModel(tradesData: $0, coinName: coinName, englishName: englishName) }
                                     DispatchQueue.main.async {
                                         coinDataArray.append(coinDataWithAdditionalInfo)
                                     }

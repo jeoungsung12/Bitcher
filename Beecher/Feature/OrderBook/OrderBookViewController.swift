@@ -121,7 +121,7 @@ extension OrderBookViewController {
             .disposed(by: disposeBag)
         tableView.rx.modelSelected([AddTradesModel].self)
             .subscribe { selectedModel in
-                
+                self.navigationController?.pushViewController(OrderBookDetailViewController(coinData: selectedModel), animated: true)
             }
             .disposed(by: disposeBag)
         refresh.rx.controlEvent(.valueChanged)

@@ -69,7 +69,7 @@ extension OrderBookTableViewCell {
         let contentView = self.contentView
         contentView.backgroundColor = .white
         contentView.snp.makeConstraints { make in
-            make.height.equalTo(100)
+            make.height.equalTo(80)
             make.leading.trailing.equalToSuperview().inset(0)
         }
         totalView.addSubview(titleLabel)

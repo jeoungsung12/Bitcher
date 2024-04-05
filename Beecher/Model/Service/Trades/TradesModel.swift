@@ -21,4 +21,5 @@ struct TradesModel : Codable {
 struct AddTradesModel : Codable {
     let tradesData: TradesModel
     let coinName: String
+    let englishName: String
 }
