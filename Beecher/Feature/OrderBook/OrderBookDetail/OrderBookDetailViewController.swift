@@ -46,11 +46,25 @@ class OrderBookDetailViewController : UIViewController {
     //코인이미지
     private let coinImage : UIImageView = {
         let view = UIImageView()
-        view.backgroundColor = .keyColor
+        view.backgroundColor = .clear
         view.clipsToBounds = true
         view.contentMode = .scaleAspectFit
         view.image = nil
         return view
+    }()
+    //에러 텍스트
+    private let errorText : UITextView = {
+        let text = UITextView()
+        text.isEditable = false
+        text.textColor = .white
+        text.font = UIFont.boldSystemFont(ofSize: 15)
+        text.textAlignment = .center
+        text.backgroundColor = .clear
+        text.isScrollEnabled = false
+        text.clipsToBounds = true
+        text.isUserInteractionEnabled = false
+        text.text = ""
+        return text
     }()
     //코인 정보
     private let coinText : UITextView = {
@@ -59,7 +73,7 @@ class OrderBookDetailViewController : UIViewController {
         text.textColor = .white
         text.font = UIFont.boldSystemFont(ofSize: 12)
         text.textAlignment = .left
-        text.backgroundColor = .keyColor
+        text.backgroundColor = .clear
         text.isScrollEnabled = false
         text.clipsToBounds = true
         text.isUserInteractionEnabled = false
@@ -71,6 +85,7 @@ class OrderBookDetailViewController : UIViewController {
         view.backgroundColor = .clear
         view.showsVerticalScrollIndicator = false
         view.showsHorizontalScrollIndicator = false
+        view.clipsToBounds = true
         return view
     }()
     //코인 스택
@@ -111,6 +126,15 @@ class OrderBookDetailViewController : UIViewController {
         view.isUserInteractionEnabled = false
         return view
     }()
+    //차트 스크롤
+    private let chartScroll : UIScrollView = {
+        let view = UIScrollView()
+        view.backgroundColor = .clear
+        view.showsVerticalScrollIndicator = false
+        view.showsHorizontalScrollIndicator = false
+        view.clipsToBounds = true
+        return view
+    }()
     //매수 호가 정보
     private let askBarChart : HorizontalBarChartView = {
         let view = HorizontalBarChartView()
@@ -120,8 +144,8 @@ class OrderBookDetailViewController : UIViewController {
         view.leftAxis.drawGridLinesEnabled = false
         view.rightAxis.drawGridLinesEnabled = false
         view.doubleTapToZoomEnabled = false
-        view.xAxis.drawLabelsEnabled = false
-        view.leftAxis.drawLabelsEnabled = true
+        view.xAxis.drawLabelsEnabled = true
+        view.leftAxis.drawLabelsEnabled = false
         view.rightAxis.drawLabelsEnabled = false
         view.noDataText = ""
         view.legend.textColor = .black
@@ -138,15 +162,13 @@ class OrderBookDetailViewController : UIViewController {
         view.leftAxis.drawGridLinesEnabled = false
         view.rightAxis.drawGridLinesEnabled = false
         view.doubleTapToZoomEnabled = false
-        view.xAxis.drawLabelsEnabled = false
-        view.leftAxis.drawLabelsEnabled = true
+        view.xAxis.drawLabelsEnabled = true
+        view.leftAxis.drawLabelsEnabled = false
         view.rightAxis.drawLabelsEnabled = false
         view.noDataText = ""
-        view.xAxis.labelRotationAngle = 90
         view.legend.textColor = .black
         view.xAxis.labelPosition = .bottom
         view.backgroundColor = .clear
-        view.transform = CGAffineTransform(scaleX: -1, y: 1)
         return view
     }()
     override func viewWillAppear(_ animated: Bool) {
@@ -180,11 +202,14 @@ extension OrderBookDetailViewController {
         self.coinInfoView.addSubview(coinImage)
         self.coinInfoView.addSubview(coinText)
         self.coinInfoView.addSubview(coinScroll)
+        self.coinInfoView.addSubview(errorText)
         self.view.addSubview(coinInfoView)
         
-        self.orderBookView.addSubview(orderBookText)
-        self.orderBookView.addSubview(askBarChart)
-        self.orderBookView.addSubview(bidBarChart)
+        self.chartScroll.addSubview(orderBookText)
+        self.chartScroll.addSubview(askBarChart)
+        self.chartScroll.addSubview(bidBarChart)
+        
+        self.orderBookView.addSubview(chartScroll)
         self.view.addSubview(orderBookView)
         self.view.addSubview(loadingIndicator)
         
@@ -204,27 +229,39 @@ extension OrderBookDetailViewController {
             make.top.equalTo(coinText.snp.bottom).offset(20)
             make.height.equalTo(70)
         }
+        errorText.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview().inset(0)
+            make.center.equalToSuperview()
+            make.height.equalTo(30)
+        }
         coinInfoView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(30)
             make.top.equalToSuperview().offset(self.view.frame.height / 10)
             make.height.equalToSuperview().dividedBy(3)
         }
         orderBookText.snp.makeConstraints { make in
-            make.leading.trailing.equalToSuperview().inset(30)
-            make.top.equalToSuperview().offset(30)
+            make.leading.equalToSuperview().offset(10)
+            make.trailing.equalToSuperview().offset(10)
+            make.top.equalToSuperview().offset(10)
             make.height.equalTo(50)
         }
         bidBarChart.snp.makeConstraints { make in
-            make.leading.equalToSuperview().inset(30)
-            make.top.equalTo(orderBookText.snp.bottom).offset(20)
-            make.height.equalToSuperview().dividedBy(2)
-            make.width.equalToSuperview().dividedBy(2)
+            make.leading.trailing.equalToSuperview().inset(0)
+            make.top.equalTo(orderBookText.snp.bottom).offset(10)
+            make.height.equalTo(300)
+            make.width.equalToSuperview().inset(10)
         }
         askBarChart.snp.makeConstraints { make in
-            make.trailing.equalToSuperview().inset(30)
-            make.top.equalTo(orderBookText.snp.bottom).offset(20)
-            make.height.equalToSuperview().dividedBy(2)
-            make.width.equalToSuperview().dividedBy(2.5)
+            make.leading.trailing.equalToSuperview().inset(0)
+            make.top.equalTo(bidBarChart.snp.bottom).offset(10)
+            make.height.equalTo(300)
+            make.width.equalToSuperview().inset(10)
+            make.bottom.equalToSuperview().offset(-10)
+        }
+        chartScroll.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(20)
+            make.leading.trailing.equalToSuperview().inset(20)
+            make.bottom.equalToSuperview().inset(50)
         }
         orderBookView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(0)
@@ -367,47 +404,53 @@ extension OrderBookDetailViewController {
         self.navigationItem.titleView = titleLabel
     }
     private func setOrder(orderBook : [OrderBookModel]) {
-        orderBookText.text = "호가 모아보기 기능은 원화마켓(KRW)에서만 지원하므로 BTC, USDT 마켓의 경우 0만 존재합니다."
+        orderBookText.text = "📌호가 모아보기 기능은 원화마켓(KRW)에서만 지원하므로 BTC, USDT 마켓의 경우 0만 존재합니다."
         self.bidsetChart(ask_bid: orderBook.compactMap{ $0.orderbook_units }.first ?? [])
         self.asksetChart(ask_bid: orderBook.compactMap{ $0.orderbook_units }.first ?? [])
     }
     private func bidsetChart(ask_bid : [Units]) {
         var entries: [BarChartDataEntry] = []
+        var xAxisValue : [String] = []
         for (index, unit) in ask_bid.enumerated() {
-            entries.append(BarChartDataEntry(x: Double(index+1), y: unit.bid_size ?? 0))
-            print("\(index) \(unit.bid_size ?? 0)")
+            entries.append(BarChartDataEntry(x: Double(index), y: unit.bid_size ?? 0))
+            xAxisValue.append("\(unit.bid_price ?? 0)")
         }
         let dataSet = BarChartDataSet(entries: entries, label: "매도")
         dataSet.colors = [.graph2]
         dataSet.valueTextColor = .black
         dataSet.highlightEnabled = false
-        dataSet.drawValuesEnabled = false
+        dataSet.drawValuesEnabled = true
+        dataSet.valueColors = [.blue]
         let data = BarChartData(dataSet: dataSet)
-        bidBarChart.xAxis.labelCount = entries.count
-        bidBarChart.xAxis.valueFormatter = IndexAxisValueFormatter(values: ["\(ask_bid.compactMap{ $0.bid_price })"])
+        bidBarChart.xAxis.labelCount = xAxisValue.count
+        bidBarChart.xAxis.valueFormatter = IndexAxisValueFormatter(values: xAxisValue)
         bidBarChart.data = data
     }
     private func asksetChart(ask_bid : [Units]) {
         var entries: [BarChartDataEntry] = []
+        var xAxisValue : [String] = []
         for (index, unit) in ask_bid.enumerated() {
-            entries.append(BarChartDataEntry(x: Double(index+1), y: unit.ask_size ?? 0))
+            entries.append(BarChartDataEntry(x: Double(index), y: unit.ask_size ?? 0))
+            xAxisValue.append("\(unit.ask_price ?? 0)")
         }
         let dataSet = BarChartDataSet(entries: entries, label: "매수")
         dataSet.colors = [.graph1]
         dataSet.valueTextColor = .black
         dataSet.highlightEnabled = false
-        dataSet.drawValuesEnabled = false
+        dataSet.drawValuesEnabled = true
+        dataSet.valueColors = [.red]
         let data = BarChartData(dataSet: dataSet)
-        bidBarChart.xAxis.labelCount = entries.count
-        askBarChart.xAxis.valueFormatter = IndexAxisValueFormatter(values: ["\(ask_bid.compactMap{ $0.ask_price })"])
+        askBarChart.xAxis.labelCount = xAxisValue.count
+        askBarChart.xAxis.valueFormatter = IndexAxisValueFormatter(values: xAxisValue)
         askBarChart.data = data
     }
     private func setupTimer() {
-        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateData), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(updateData), userInfo: nil, repeats: true)
         timer?.fire()
     }
     @objc private func updateData() {
-        
+        let market = coinData.compactMap({ $0.tradesData.market }).first ?? ""
+        orderBookDetailViewModel.orderBookTrigger.onNext(market)
     }
     private func startLoadingAnimation() {
         if let gifUrl = Bundle.main.url(forResource: "Coin", withExtension: "gif") {
@@ -421,29 +464,34 @@ extension OrderBookDetailViewController {
 //MARK: - SetBinding
 extension OrderBookDetailViewController {
     private func setBinding() {
-        guard let english_name = coinData.compactMap({ $0.englishName }).first else{return}
-        guard let market = coinData.compactMap({ $0.tradesData.market }).first else{return}
+        let english_name = coinData.compactMap({ $0.englishName }).first ?? ""
+        let market = coinData.compactMap({ $0.tradesData.market }).first ?? ""
         orderBookDetailViewModel.imageTrigger.onNext(english_name)
         self.startLoadingAnimation()
         orderBookDetailViewModel.imageResult
             .subscribe { paprikaModel in
-                guard let paprika = paprikaModel.element else{return}
-                let imageUrl = paprika.logo
-                guard let hasing = paprika.hash_algorithm else{ return }
-                guard let links = paprika.links else { return }
-                self.addBtnStack(links: links)
-                if let urlString = imageUrl {
-                    if let url = URL(string: urlString) {
-                        self.coinImage.kf.setImage(with: url)
-                        self.coinText.text = "해싱 알고리즘 : \(hasing)"
-                        self.stopLoadingAnimation()
+                let hasing = paprikaModel.element?.hash_algorithm ?? ""
+                if let links = paprikaModel.element?.links{
+                    self.addBtnStack(links: links)
+                }
+                let imageUrl = paprikaModel.element?.logo
+                if imageUrl != "" {
+                    if let urlString = imageUrl {
+                        if let url = URL(string: urlString) {
+                            self.coinImage.kf.setImage(with: url)
+                            self.coinText.text = "해싱 알고리즘 : \(hasing)"
+                            self.stopLoadingAnimation()
+                        }else{
+                            self.errorText.text = "해당 암호화폐는 정보를 지원하지 않습니다⚠️"
+                            self.stopLoadingAnimation()
+                        }
                     }else{
+                        self.errorText.text = "해당 암호화폐는 정보를 지원하지 않습니다⚠️"
                         self.stopLoadingAnimation()
-                        self.coinText.text = "해당 암호화폐는 정보를 지원하지 않습니다⚠️"
                     }
                 }else{
+                    self.errorText.text = "해당 암호화폐는 정보를 지원하지 않습니다⚠️"
                     self.stopLoadingAnimation()
-                    self.coinText.text = "해당 암호화폐는 정보를 지원하지 않습니다⚠️"
                 }
             }
             .disposed(by: disposeBag)
