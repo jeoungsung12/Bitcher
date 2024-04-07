@@ -41,7 +41,7 @@ extension TabBarViewController {
         secondVC.tabBarItem = UITabBarItem(title: "호가", image: UIImage(systemName: "creditcard.fill"), tag: 1)
         let secondNavigationVC = UINavigationController(rootViewController: secondVC)
         
-        let thirdVC = MainViewController()
+        let thirdVC = AiViewController()
         thirdVC.tabBarItem = UITabBarItem(title: "Ai", image: UIImage(systemName: "target"), tag: 2)
         let thirdNavigationVC = UINavigationController(rootViewController: thirdVC)
         

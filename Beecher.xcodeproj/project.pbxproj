@@ -61,6 +61,11 @@
 		E4DABF1A2BC2D4DE00AE9DFB /* HIDEAPIKEY++Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DABF192BC2D4DE00AE9DFB /* HIDEAPIKEY++Bundle.swift */; };
 		E4DABF1C2BC2D51500AE9DFB /* ApiKeyList.plist in Resources */ = {isa = PBXBuildFile; fileRef = E4DABF1B2BC2D51500AE9DFB /* ApiKeyList.plist */; };
 		E4DABF212BC2DB8B00AE9DFB /* NewsSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DABF202BC2DB8B00AE9DFB /* NewsSearchViewController.swift */; };
+		E4DABF2B2BC2EAF100AE9DFB /* AiViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DABF2A2BC2EAF100AE9DFB /* AiViewController.swift */; };
+		E4DABF2D2BC2EAF900AE9DFB /* AiViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DABF2C2BC2EAF900AE9DFB /* AiViewModel.swift */; };
+		E4DABF2F2BC2EDC500AE9DFB /* ChatGPTService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DABF2E2BC2EDC500AE9DFB /* ChatGPTService.swift */; };
+		E4DABF322BC2EDEA00AE9DFB /* ChatServiceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DABF312BC2EDEA00AE9DFB /* ChatServiceModel.swift */; };
+		E4DABF342BC2F1A900AE9DFB /* cube.gif in Resources */ = {isa = PBXBuildFile; fileRef = E4DABF332BC2F1A900AE9DFB /* cube.gif */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -110,6 +115,11 @@
 		E4DABF192BC2D4DE00AE9DFB /* HIDEAPIKEY++Bundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HIDEAPIKEY++Bundle.swift"; sourceTree = "<group>"; };
 		E4DABF1B2BC2D51500AE9DFB /* ApiKeyList.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = ApiKeyList.plist; sourceTree = "<group>"; };
 		E4DABF202BC2DB8B00AE9DFB /* NewsSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsSearchViewController.swift; sourceTree = "<group>"; };
+		E4DABF2A2BC2EAF100AE9DFB /* AiViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AiViewController.swift; sourceTree = "<group>"; };
+		E4DABF2C2BC2EAF900AE9DFB /* AiViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AiViewModel.swift; sourceTree = "<group>"; };
+		E4DABF2E2BC2EDC500AE9DFB /* ChatGPTService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatGPTService.swift; sourceTree = "<group>"; };
+		E4DABF312BC2EDEA00AE9DFB /* ChatServiceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatServiceModel.swift; sourceTree = "<group>"; };
+		E4DABF332BC2F1A900AE9DFB /* cube.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = cube.gif; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -186,6 +196,7 @@
 		E4CAF4AE2BB980C600CB18EC /* Feature */ = {
 			isa = PBXGroup;
 			children = (
+				E4DABF272BC2E7CE00AE9DFB /* Ai */,
 				E4DABF0A2BC2CBD200AE9DFB /* News */,
 				E4DABED62BBF155A00AE9DFB /* OrderBook */,
 				E4CAF4E62BBBCBA400CB18EC /* TabBar */,
@@ -238,6 +249,7 @@
 		E4CAF4D42BB9A77400CB18EC /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				E4DABF262BC2E79F00AE9DFB /* Ai */,
 				E4DABF0B2BC2CBD900AE9DFB /* News */,
 				E4CAF4E32BBBC91400CB18EC /* Coin */,
 			);
@@ -247,6 +259,7 @@
 		E4CAF4DA2BB9B4C000CB18EC /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				E4DABF302BC2EDDF00AE9DFB /* Chat */,
 				E4DABF0C2BC2CBE300AE9DFB /* News */,
 				E4DABEF02BC0108000AE9DFB /* OrderBook */,
 				E4DABED02BBF0CE700AE9DFB /* Trades */,
@@ -289,6 +302,7 @@
 		E4DABEBD2BBE7D9E00AE9DFB /* Gif */ = {
 			isa = PBXGroup;
 			children = (
+				E4DABF332BC2F1A900AE9DFB /* cube.gif */,
 				E4DABEC22BBEA9E100AE9DFB /* Coin.gif */,
 			);
 			path = Gif;
@@ -434,6 +448,31 @@
 			path = NewsSearch;
 			sourceTree = "<group>";
 		};
+		E4DABF262BC2E79F00AE9DFB /* Ai */ = {
+			isa = PBXGroup;
+			children = (
+				E4DABF2E2BC2EDC500AE9DFB /* ChatGPTService.swift */,
+			);
+			path = Ai;
+			sourceTree = "<group>";
+		};
+		E4DABF272BC2E7CE00AE9DFB /* Ai */ = {
+			isa = PBXGroup;
+			children = (
+				E4DABF2A2BC2EAF100AE9DFB /* AiViewController.swift */,
+				E4DABF2C2BC2EAF900AE9DFB /* AiViewModel.swift */,
+			);
+			path = Ai;
+			sourceTree = "<group>";
+		};
+		E4DABF302BC2EDDF00AE9DFB /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				E4DABF312BC2EDEA00AE9DFB /* ChatServiceModel.swift */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -516,6 +555,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E4CAF4A52BB9808400CB18EC /* LaunchScreen.storyboard in Resources */,
+				E4DABF342BC2F1A900AE9DFB /* cube.gif in Resources */,
 				E4DABEC32BBEA9E100AE9DFB /* Coin.gif in Resources */,
 				E4CAF4A22BB9808400CB18EC /* Assets.xcassets in Resources */,
 				E4DABF1C2BC2D51500AE9DFB /* ApiKeyList.plist in Resources */,
@@ -551,9 +591,12 @@
 				E4DABF122BC2CBFA00AE9DFB /* NewsTableViewCell.swift in Sources */,
 				E4DABED52BBF0D3200AE9DFB /* TradesService.swift in Sources */,
 				E4DABF0E2BC2CBEC00AE9DFB /* NewsViewController.swift in Sources */,
+				E4DABF322BC2EDEA00AE9DFB /* ChatServiceModel.swift in Sources */,
 				E4CAF4992BB9808300CB18EC /* AppDelegate.swift in Sources */,
+				E4DABF2D2BC2EAF900AE9DFB /* AiViewModel.swift in Sources */,
 				E4DABECC2BBEB21C00AE9DFB /* CandleModel.swift in Sources */,
 				E4CAF4DC2BB9B61C00CB18EC /* GetAllCoinModel.swift in Sources */,
+				E4DABF2F2BC2EDC500AE9DFB /* ChatGPTService.swift in Sources */,
 				E4CAF49B2BB9808300CB18EC /* SceneDelegate.swift in Sources */,
 				E4CAF4ED2BBBD04600CB18EC /* SearchViewController.swift in Sources */,
 				E4DABEED2BBFFB8D00AE9DFB /* OrderSearchViewModel.swift in Sources */,
@@ -564,6 +607,7 @@
 				E4CAF4CE2BB9884000CB18EC /* MainViewModel.swift in Sources */,
 				E4CAF4E92BBBCBA400CB18EC /* TabBarViewModel.swift in Sources */,
 				E4DABF162BC2CECB00AE9DFB /* NewsService.swift in Sources */,
+				E4DABF2B2BC2EAF100AE9DFB /* AiViewController.swift in Sources */,
 				E4DABF102BC2CBF200AE9DFB /* NewsViewModel.swift in Sources */,
 				E4DABEE62BBFBC8900AE9DFB /* GetImageService.swift in Sources */,
 				E4CAF4EF2BBBD04D00CB18EC /* SearchViewModel.swift in Sources */,
