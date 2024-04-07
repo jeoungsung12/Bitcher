@@ -108,9 +108,7 @@ iOSInjectionProject/
 ### Xcode Patch ###
 **/xcshareddata/WorkspaceSettings.xcsettings
 
-/Users/jeongseong-yun/Desktop/Beecher/Beecher/Core/ApiKeyList.plist
-/Users/jeongseong-yun/Desktop/Beecher/Beecher/Core/HIDEAPIKEY++Bundle.swift
-/Users/jeongseong-yun/Desktop/Beecher/Beecher/Service/Ai/ChatGPTService.swift
-
+ApiKeyList.plist
+HIDEAPIKEY++Bundle.swift
 
 # End of https://www.gitignore.io/api/xcode,swift,cocoapods
