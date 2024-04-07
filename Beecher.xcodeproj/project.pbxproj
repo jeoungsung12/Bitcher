@@ -57,6 +57,9 @@
 		E4DABF122BC2CBFA00AE9DFB /* NewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DABF112BC2CBFA00AE9DFB /* NewsTableViewCell.swift */; };
 		E4DABF142BC2CEC200AE9DFB /* NewsServiceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DABF132BC2CEC200AE9DFB /* NewsServiceModel.swift */; };
 		E4DABF162BC2CECB00AE9DFB /* NewsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DABF152BC2CECB00AE9DFB /* NewsService.swift */; };
+		E4DABF182BC2D46100AE9DFB /* String + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DABF172BC2D46100AE9DFB /* String + Extension.swift */; };
+		E4DABF1A2BC2D4DE00AE9DFB /* HIDEAPIKEY++Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DABF192BC2D4DE00AE9DFB /* HIDEAPIKEY++Bundle.swift */; };
+		E4DABF1C2BC2D51500AE9DFB /* ApiKeyList.plist in Resources */ = {isa = PBXBuildFile; fileRef = E4DABF1B2BC2D51500AE9DFB /* ApiKeyList.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -102,6 +105,9 @@
 		E4DABF112BC2CBFA00AE9DFB /* NewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableViewCell.swift; sourceTree = "<group>"; };
 		E4DABF132BC2CEC200AE9DFB /* NewsServiceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsServiceModel.swift; sourceTree = "<group>"; };
 		E4DABF152BC2CECB00AE9DFB /* NewsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsService.swift; sourceTree = "<group>"; };
+		E4DABF172BC2D46100AE9DFB /* String + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + Extension.swift"; sourceTree = "<group>"; };
+		E4DABF192BC2D4DE00AE9DFB /* HIDEAPIKEY++Bundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HIDEAPIKEY++Bundle.swift"; sourceTree = "<group>"; };
+		E4DABF1B2BC2D51500AE9DFB /* ApiKeyList.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = ApiKeyList.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -191,6 +197,9 @@
 			children = (
 				E4DABEBD2BBE7D9E00AE9DFB /* Gif */,
 				E4CAF4C02BB9864100CB18EC /* Color + Extension.swift */,
+				E4DABF172BC2D46100AE9DFB /* String + Extension.swift */,
+				E4DABF192BC2D4DE00AE9DFB /* HIDEAPIKEY++Bundle.swift */,
+				E4DABF1B2BC2D51500AE9DFB /* ApiKeyList.plist */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -498,6 +507,7 @@
 				E4CAF4A52BB9808400CB18EC /* LaunchScreen.storyboard in Resources */,
 				E4DABEC32BBEA9E100AE9DFB /* Coin.gif in Resources */,
 				E4CAF4A22BB9808400CB18EC /* Assets.xcassets in Resources */,
+				E4DABF1C2BC2D51500AE9DFB /* ApiKeyList.plist in Resources */,
 				E4CAF4BF2BB9832A00CB18EC /* Color.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -515,12 +525,14 @@
 				E4CAF4CB2BB9884000CB18EC /* MainDetailViewController.swift in Sources */,
 				E4CAF4CC2BB9884000CB18EC /* MainDetailViewModel.swift in Sources */,
 				E4DABEE82BBFBDB800AE9DFB /* GetPaprikaModel.swift in Sources */,
+				E4DABF1A2BC2D4DE00AE9DFB /* HIDEAPIKEY++Bundle.swift in Sources */,
 				E4DABEE42BBFB68700AE9DFB /* OrderBookDetailViewModel.swift in Sources */,
 				E4DABEF22BC0108C00AE9DFB /* OrderBookModel.swift in Sources */,
 				E4CAF4E52BBBC9F900CB18EC /* SearchCoin.swift in Sources */,
 				E4CAF4C12BB9864100CB18EC /* Color + Extension.swift in Sources */,
 				E4DABF142BC2CEC200AE9DFB /* NewsServiceModel.swift in Sources */,
 				E4DABEDA2BBF16D800AE9DFB /* OrderBookTableViewCell.swift in Sources */,
+				E4DABF182BC2D46100AE9DFB /* String + Extension.swift in Sources */,
 				E4DABEDC2BBF174800AE9DFB /* OrderBookViewModel.swift in Sources */,
 				E4DABEE02BBF17A600AE9DFB /* OrderBookService.swift in Sources */,
 				E4DABEE22BBFB67600AE9DFB /* OrderBookDetailViewController.swift in Sources */,

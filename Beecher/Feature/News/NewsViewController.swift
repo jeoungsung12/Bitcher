@@ -18,7 +18,6 @@ class NewsViewController: UIViewController {
     
     //데이터 관련 변수
     private var isLoadingData = false
-    private var timer: Timer?
     
     //검색
     private let searchBtn : UIButton = {
@@ -82,7 +81,6 @@ class NewsViewController: UIViewController {
         super.viewDidLoad()
         setLayout()
         setBinding()
-        setupTimer()
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
@@ -94,6 +92,7 @@ extension NewsViewController {
     private func setLayout() {
         self.navigationItem.titleView = titleLabel
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: searchBtn)
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: newsLabel)
         self.view.clipsToBounds = true
         self.view.backgroundColor = .white
         self.title = "뉴스"
@@ -143,13 +142,6 @@ extension NewsViewController {
                 self.navigationController?.pushViewController(OrderSearchViewController(), animated: true)
             }
             .disposed(by: disposeBag)
-    }
-    private func setupTimer() {
-        timer = Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(updateData), userInfo: nil, repeats: true)
-        timer?.fire()
-    }
-    @objc private func updateData() {
-        newsViewModel.inputTrigger.onNext(("암호화폐"))
     }
     private func startLoadingAnimation() {
         if let gifUrl = Bundle.main.url(forResource: "Coin", withExtension: "gif") {

@@ -11,7 +11,7 @@ struct NewsServiceModel : Codable {
     let total : Int?
     let start : Int?
     let display : Int?
-    let item : [NewsItems]?
+    let items : [NewsItems]?
 }
 struct NewsItems : Codable {
     let title : String?
