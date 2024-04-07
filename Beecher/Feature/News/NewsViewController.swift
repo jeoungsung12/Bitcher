@@ -132,6 +132,23 @@ extension NewsViewController {
                 
             }
             .disposed(by: disposeBag)
+        tableView.rx.didScroll
+            .subscribe(onNext: { [weak self] in
+                guard let self = self else { return }
+                let offsetY = self.tableView.contentOffset.y
+                let contentHeight = self.tableView.contentSize.height
+                let screenHeight = self.tableView.frame.height
+                guard !self.isLoadingData else { return }
+                if offsetY > contentHeight - screenHeight {
+                    self.isLoadingData = true
+                    self.startLoadingAnimation()
+                    self.newsViewModel.loadMoreData(query: "암호화폐") {
+                        self.isLoadingData = false
+                        self.stopLoadingAnimation()
+                    }
+                }
+            })
+            .disposed(by: disposeBag)
         refresh.rx.controlEvent(.valueChanged)
             .subscribe { _ in
                 self.newsViewModel.inputTrigger.onNext(("암호화폐"))
