@@ -45,7 +45,7 @@ extension TabBarViewController {
         thirdVC.tabBarItem = UITabBarItem(title: "Ai", image: UIImage(systemName: "target"), tag: 2)
         let thirdNavigationVC = UINavigationController(rootViewController: thirdVC)
         
-        let forthVC = MainViewController()
+        let forthVC = NewsViewController()
         forthVC.tabBarItem = UITabBarItem(title: "환율", image: UIImage(systemName: "globe"), tag: 3)
         let forthNavigationVC = UINavigationController(rootViewController: forthVC)
         

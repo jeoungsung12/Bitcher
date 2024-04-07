@@ -23,7 +23,6 @@
 		E4CAF4CD2BB9884000CB18EC /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4CAF4C82BB9884000CB18EC /* MainViewController.swift */; };
 		E4CAF4CE2BB9884000CB18EC /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4CAF4C92BB9884000CB18EC /* MainViewModel.swift */; };
 		E4CAF4CF2BB9884000CB18EC /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4CAF4CA2BB9884000CB18EC /* MainTableViewCell.swift */; };
-		E4CAF4D32BB988A900CB18EC /* MainModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4CAF4D22BB988A900CB18EC /* MainModel.swift */; };
 		E4CAF4D72BB9AE0900CB18EC /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = E4CAF4D62BB9AE0900CB18EC /* Kingfisher */; };
 		E4CAF4D92BB9B2AD00CB18EC /* CoinService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4CAF4D82BB9B2AD00CB18EC /* CoinService.swift */; };
 		E4CAF4DC2BB9B61C00CB18EC /* GetAllCoinModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4CAF4DB2BB9B61C00CB18EC /* GetAllCoinModel.swift */; };
@@ -53,6 +52,11 @@
 		E4DABEED2BBFFB8D00AE9DFB /* OrderSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DABEEC2BBFFB8D00AE9DFB /* OrderSearchViewModel.swift */; };
 		E4DABEEF2BBFFC9400AE9DFB /* SearchOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DABEEE2BBFFC9400AE9DFB /* SearchOrder.swift */; };
 		E4DABEF22BC0108C00AE9DFB /* OrderBookModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DABEF12BC0108C00AE9DFB /* OrderBookModel.swift */; };
+		E4DABF0E2BC2CBEC00AE9DFB /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DABF0D2BC2CBEC00AE9DFB /* NewsViewController.swift */; };
+		E4DABF102BC2CBF200AE9DFB /* NewsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DABF0F2BC2CBF200AE9DFB /* NewsViewModel.swift */; };
+		E4DABF122BC2CBFA00AE9DFB /* NewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DABF112BC2CBFA00AE9DFB /* NewsTableViewCell.swift */; };
+		E4DABF142BC2CEC200AE9DFB /* NewsServiceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DABF132BC2CEC200AE9DFB /* NewsServiceModel.swift */; };
+		E4DABF162BC2CECB00AE9DFB /* NewsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DABF152BC2CECB00AE9DFB /* NewsService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,7 +73,6 @@
 		E4CAF4C82BB9884000CB18EC /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		E4CAF4C92BB9884000CB18EC /* MainViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		E4CAF4CA2BB9884000CB18EC /* MainTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
-		E4CAF4D22BB988A900CB18EC /* MainModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainModel.swift; sourceTree = "<group>"; };
 		E4CAF4D82BB9B2AD00CB18EC /* CoinService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinService.swift; sourceTree = "<group>"; };
 		E4CAF4DB2BB9B61C00CB18EC /* GetAllCoinModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAllCoinModel.swift; sourceTree = "<group>"; };
 		E4CAF4E42BBBC9F900CB18EC /* SearchCoin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCoin.swift; sourceTree = "<group>"; };
@@ -94,6 +97,11 @@
 		E4DABEEC2BBFFB8D00AE9DFB /* OrderSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderSearchViewModel.swift; sourceTree = "<group>"; };
 		E4DABEEE2BBFFC9400AE9DFB /* SearchOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchOrder.swift; sourceTree = "<group>"; };
 		E4DABEF12BC0108C00AE9DFB /* OrderBookModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderBookModel.swift; sourceTree = "<group>"; };
+		E4DABF0D2BC2CBEC00AE9DFB /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
+		E4DABF0F2BC2CBF200AE9DFB /* NewsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewModel.swift; sourceTree = "<group>"; };
+		E4DABF112BC2CBFA00AE9DFB /* NewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableViewCell.swift; sourceTree = "<group>"; };
+		E4DABF132BC2CEC200AE9DFB /* NewsServiceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsServiceModel.swift; sourceTree = "<group>"; };
+		E4DABF152BC2CECB00AE9DFB /* NewsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,6 +178,7 @@
 		E4CAF4AE2BB980C600CB18EC /* Feature */ = {
 			isa = PBXGroup;
 			children = (
+				E4DABF0A2BC2CBD200AE9DFB /* News */,
 				E4DABED62BBF155A00AE9DFB /* OrderBook */,
 				E4CAF4E62BBBCBA400CB18EC /* TabBar */,
 				E4CAF4C42BB9884000CB18EC /* Main */,
@@ -211,22 +220,14 @@
 			isa = PBXGroup;
 			children = (
 				E4CAF4DA2BB9B4C000CB18EC /* Service */,
-				E4CAF4D12BB988A900CB18EC /* Main */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		E4CAF4D12BB988A900CB18EC /* Main */ = {
-			isa = PBXGroup;
-			children = (
-				E4CAF4D22BB988A900CB18EC /* MainModel.swift */,
-			);
-			path = Main;
 			sourceTree = "<group>";
 		};
 		E4CAF4D42BB9A77400CB18EC /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				E4DABF0B2BC2CBD900AE9DFB /* News */,
 				E4CAF4E32BBBC91400CB18EC /* Coin */,
 			);
 			path = Service;
@@ -235,6 +236,7 @@
 		E4CAF4DA2BB9B4C000CB18EC /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				E4DABF0C2BC2CBE300AE9DFB /* News */,
 				E4DABEF02BC0108000AE9DFB /* OrderBook */,
 				E4DABED02BBF0CE700AE9DFB /* Trades */,
 				E4DABECA2BBEB21300AE9DFB /* Candle */,
@@ -386,6 +388,32 @@
 			path = OrderBook;
 			sourceTree = "<group>";
 		};
+		E4DABF0A2BC2CBD200AE9DFB /* News */ = {
+			isa = PBXGroup;
+			children = (
+				E4DABF0D2BC2CBEC00AE9DFB /* NewsViewController.swift */,
+				E4DABF0F2BC2CBF200AE9DFB /* NewsViewModel.swift */,
+				E4DABF112BC2CBFA00AE9DFB /* NewsTableViewCell.swift */,
+			);
+			path = News;
+			sourceTree = "<group>";
+		};
+		E4DABF0B2BC2CBD900AE9DFB /* News */ = {
+			isa = PBXGroup;
+			children = (
+				E4DABF152BC2CECB00AE9DFB /* NewsService.swift */,
+			);
+			path = News;
+			sourceTree = "<group>";
+		};
+		E4DABF0C2BC2CBE300AE9DFB /* News */ = {
+			isa = PBXGroup;
+			children = (
+				E4DABF132BC2CEC200AE9DFB /* NewsServiceModel.swift */,
+			);
+			path = News;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -491,11 +519,14 @@
 				E4DABEF22BC0108C00AE9DFB /* OrderBookModel.swift in Sources */,
 				E4CAF4E52BBBC9F900CB18EC /* SearchCoin.swift in Sources */,
 				E4CAF4C12BB9864100CB18EC /* Color + Extension.swift in Sources */,
+				E4DABF142BC2CEC200AE9DFB /* NewsServiceModel.swift in Sources */,
 				E4DABEDA2BBF16D800AE9DFB /* OrderBookTableViewCell.swift in Sources */,
 				E4DABEDC2BBF174800AE9DFB /* OrderBookViewModel.swift in Sources */,
 				E4DABEE02BBF17A600AE9DFB /* OrderBookService.swift in Sources */,
 				E4DABEE22BBFB67600AE9DFB /* OrderBookDetailViewController.swift in Sources */,
+				E4DABF122BC2CBFA00AE9DFB /* NewsTableViewCell.swift in Sources */,
 				E4DABED52BBF0D3200AE9DFB /* TradesService.swift in Sources */,
+				E4DABF0E2BC2CBEC00AE9DFB /* NewsViewController.swift in Sources */,
 				E4CAF4992BB9808300CB18EC /* AppDelegate.swift in Sources */,
 				E4DABECC2BBEB21C00AE9DFB /* CandleModel.swift in Sources */,
 				E4CAF4DC2BB9B61C00CB18EC /* GetAllCoinModel.swift in Sources */,
@@ -505,10 +536,11 @@
 				E4DABEEB2BBFFB8500AE9DFB /* OrderSearchViewController.swift in Sources */,
 				E4DABEEF2BBFFC9400AE9DFB /* SearchOrder.swift in Sources */,
 				E4DABEC82BBEB19F00AE9DFB /* CandleService.swift in Sources */,
-				E4CAF4D32BB988A900CB18EC /* MainModel.swift in Sources */,
 				E4DABED22BBF0D0200AE9DFB /* TradesModel.swift in Sources */,
 				E4CAF4CE2BB9884000CB18EC /* MainViewModel.swift in Sources */,
 				E4CAF4E92BBBCBA400CB18EC /* TabBarViewModel.swift in Sources */,
+				E4DABF162BC2CECB00AE9DFB /* NewsService.swift in Sources */,
+				E4DABF102BC2CBF200AE9DFB /* NewsViewModel.swift in Sources */,
 				E4DABEE62BBFBC8900AE9DFB /* GetImageService.swift in Sources */,
 				E4CAF4EF2BBBD04D00CB18EC /* SearchViewModel.swift in Sources */,
 				E4CAF4EA2BBBCBA400CB18EC /* TabBarViewController.swift in Sources */,
