@@ -87,7 +87,7 @@ extension OrderBookViewController {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: searchBtn)
         self.view.clipsToBounds = true
         self.view.backgroundColor = .white
-        self.title = ""
+        self.title = "호가"
         
         self.tableView.addSubview(refresh)
         self.view.addSubview(tableView)

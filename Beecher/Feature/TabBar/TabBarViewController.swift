@@ -34,19 +34,19 @@ extension TabBarViewController {
         self.tabBar.unselectedItemTintColor = .lightGray
         //탭바 설정
         let firstVC = MainViewController()
-        firstVC.tabBarItem = UITabBarItem(title: nil, image: UIImage(systemName: "list.bullet"), tag: 0)
+        firstVC.tabBarItem = UITabBarItem(title: "차트", image: UIImage(systemName: "list.bullet"), tag: 0)
         let firstNavigationVC = UINavigationController(rootViewController: firstVC)
         
         let secondVC = OrderBookViewController()
-        secondVC.tabBarItem = UITabBarItem(title: nil, image: UIImage(systemName: "creditcard.fill"), tag: 1)
+        secondVC.tabBarItem = UITabBarItem(title: "호가", image: UIImage(systemName: "creditcard.fill"), tag: 1)
         let secondNavigationVC = UINavigationController(rootViewController: secondVC)
         
         let thirdVC = MainViewController()
-        thirdVC.tabBarItem = UITabBarItem(title: nil, image: UIImage(systemName: "target"), tag: 2)
+        thirdVC.tabBarItem = UITabBarItem(title: "Ai", image: UIImage(systemName: "target"), tag: 2)
         let thirdNavigationVC = UINavigationController(rootViewController: thirdVC)
         
         let forthVC = MainViewController()
-        forthVC.tabBarItem = UITabBarItem(title: nil, image: UIImage(systemName: "globe"), tag: 3)
+        forthVC.tabBarItem = UITabBarItem(title: "환율", image: UIImage(systemName: "globe"), tag: 3)
         let forthNavigationVC = UINavigationController(rootViewController: forthVC)
         
         self.viewControllers = [firstNavigationVC, secondNavigationVC, thirdNavigationVC, forthNavigationVC]
