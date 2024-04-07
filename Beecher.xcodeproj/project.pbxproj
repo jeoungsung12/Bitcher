@@ -60,6 +60,7 @@
 		E4DABF182BC2D46100AE9DFB /* String + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DABF172BC2D46100AE9DFB /* String + Extension.swift */; };
 		E4DABF1A2BC2D4DE00AE9DFB /* HIDEAPIKEY++Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DABF192BC2D4DE00AE9DFB /* HIDEAPIKEY++Bundle.swift */; };
 		E4DABF1C2BC2D51500AE9DFB /* ApiKeyList.plist in Resources */ = {isa = PBXBuildFile; fileRef = E4DABF1B2BC2D51500AE9DFB /* ApiKeyList.plist */; };
+		E4DABF212BC2DB8B00AE9DFB /* NewsSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DABF202BC2DB8B00AE9DFB /* NewsSearchViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -108,6 +109,7 @@
 		E4DABF172BC2D46100AE9DFB /* String + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + Extension.swift"; sourceTree = "<group>"; };
 		E4DABF192BC2D4DE00AE9DFB /* HIDEAPIKEY++Bundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HIDEAPIKEY++Bundle.swift"; sourceTree = "<group>"; };
 		E4DABF1B2BC2D51500AE9DFB /* ApiKeyList.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = ApiKeyList.plist; sourceTree = "<group>"; };
+		E4DABF202BC2DB8B00AE9DFB /* NewsSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsSearchViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -400,6 +402,7 @@
 		E4DABF0A2BC2CBD200AE9DFB /* News */ = {
 			isa = PBXGroup;
 			children = (
+				E4DABF1F2BC2DB7100AE9DFB /* NewsSearch */,
 				E4DABF0D2BC2CBEC00AE9DFB /* NewsViewController.swift */,
 				E4DABF0F2BC2CBF200AE9DFB /* NewsViewModel.swift */,
 				E4DABF112BC2CBFA00AE9DFB /* NewsTableViewCell.swift */,
@@ -421,6 +424,14 @@
 				E4DABF132BC2CEC200AE9DFB /* NewsServiceModel.swift */,
 			);
 			path = News;
+			sourceTree = "<group>";
+		};
+		E4DABF1F2BC2DB7100AE9DFB /* NewsSearch */ = {
+			isa = PBXGroup;
+			children = (
+				E4DABF202BC2DB8B00AE9DFB /* NewsSearchViewController.swift */,
+			);
+			path = NewsSearch;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -525,6 +536,7 @@
 				E4CAF4CB2BB9884000CB18EC /* MainDetailViewController.swift in Sources */,
 				E4CAF4CC2BB9884000CB18EC /* MainDetailViewModel.swift in Sources */,
 				E4DABEE82BBFBDB800AE9DFB /* GetPaprikaModel.swift in Sources */,
+				E4DABF212BC2DB8B00AE9DFB /* NewsSearchViewController.swift in Sources */,
 				E4DABF1A2BC2D4DE00AE9DFB /* HIDEAPIKEY++Bundle.swift in Sources */,
 				E4DABEE42BBFB68700AE9DFB /* OrderBookDetailViewModel.swift in Sources */,
 				E4DABEF22BC0108C00AE9DFB /* OrderBookModel.swift in Sources */,

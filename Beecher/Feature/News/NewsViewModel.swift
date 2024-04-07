@@ -21,6 +21,7 @@ class NewsViewModel {
         //MARK: - GetCoinInfo
         inputTrigger
             .subscribe { query in
+                print("\(query)")
                 NewsService.getNews(query: query, start: 1)
                     .map { coinData -> [NewsItems] in
                         return coinData
