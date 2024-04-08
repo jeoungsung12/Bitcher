@@ -66,6 +66,7 @@
 		E4DABF2F2BC2EDC500AE9DFB /* ChatGPTService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DABF2E2BC2EDC500AE9DFB /* ChatGPTService.swift */; };
 		E4DABF322BC2EDEA00AE9DFB /* ChatServiceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DABF312BC2EDEA00AE9DFB /* ChatServiceModel.swift */; };
 		E4DABF342BC2F1A900AE9DFB /* cube.gif in Resources */ = {isa = PBXBuildFile; fileRef = E4DABF332BC2F1A900AE9DFB /* cube.gif */; };
+		E4DABF362BC2FB9500AE9DFB /* GetNameService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DABF352BC2FB9500AE9DFB /* GetNameService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -120,6 +121,7 @@
 		E4DABF2E2BC2EDC500AE9DFB /* ChatGPTService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatGPTService.swift; sourceTree = "<group>"; };
 		E4DABF312BC2EDEA00AE9DFB /* ChatServiceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatServiceModel.swift; sourceTree = "<group>"; };
 		E4DABF332BC2F1A900AE9DFB /* cube.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = cube.gif; sourceTree = "<group>"; };
+		E4DABF352BC2FB9500AE9DFB /* GetNameService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetNameService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -452,6 +454,7 @@
 			isa = PBXGroup;
 			children = (
 				E4DABF2E2BC2EDC500AE9DFB /* ChatGPTService.swift */,
+				E4DABF352BC2FB9500AE9DFB /* GetNameService.swift */,
 			);
 			path = Ai;
 			sourceTree = "<group>";
@@ -599,6 +602,7 @@
 				E4DABF2F2BC2EDC500AE9DFB /* ChatGPTService.swift in Sources */,
 				E4CAF49B2BB9808300CB18EC /* SceneDelegate.swift in Sources */,
 				E4CAF4ED2BBBD04600CB18EC /* SearchViewController.swift in Sources */,
+				E4DABF362BC2FB9500AE9DFB /* GetNameService.swift in Sources */,
 				E4DABEED2BBFFB8D00AE9DFB /* OrderSearchViewModel.swift in Sources */,
 				E4DABEEB2BBFFB8500AE9DFB /* OrderSearchViewController.swift in Sources */,
 				E4DABEEF2BBFFC9400AE9DFB /* SearchOrder.swift in Sources */,
