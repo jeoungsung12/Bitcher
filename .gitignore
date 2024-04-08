@@ -108,6 +108,6 @@ iOSInjectionProject/
 ### Xcode Patch ###
 **/xcshareddata/WorkspaceSettings.xcsettings
 
-Beecher/Core/ApiKeyList.plist
+/Users/jeongseong-yun/Desktop/Beecher/Beecher/Core/ApiKeyList.plist
 
 # End of https://www.gitignore.io/api/xcode,swift,cocoapods
