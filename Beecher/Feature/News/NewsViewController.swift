@@ -12,7 +12,7 @@ import SnapKit
 import NVActivityIndicatorView
 import Kingfisher
 
-class NewsViewController: UIViewController {
+class NewsViewController: UIViewController, UITextFieldDelegate  {
     private let disposeBag = DisposeBag()
     private let newsViewModel = NewsViewModel()
     
@@ -45,6 +45,28 @@ class NewsViewController: UIViewController {
         label.font = UIFont.boldSystemFont(ofSize: 20)
         label.textAlignment = .center
         return label
+    }()
+    //검색 창
+    private let searchView : UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        view.layer.borderColor = UIColor.keyColor.cgColor
+        view.layer.cornerRadius = 10
+        view.layer.masksToBounds = true
+        view.layer.borderWidth = 1
+        view.frame = CGRect(x: 0, y: 0, width: 250, height: 35)
+        return view
+    }()
+    //검색 텍스트
+    private let searchText : UITextField = {
+        let text = UITextField()
+        text.textColor = .black
+        text.backgroundColor = .white
+        text.placeholder = "궁금한 기사를 검색해 보세요!"
+        text.textAlignment = .left
+        text.font = UIFont.systemFont(ofSize: 15)
+        text.frame = CGRect(x: 10, y: 3, width: 200, height: 30)
+        return text
     }()
     //리프레시
     private let refresh : UIRefreshControl = {
@@ -90,7 +112,9 @@ class NewsViewController: UIViewController {
 //MARK: - UI Layout
 extension NewsViewController {
     private func setLayout() {
-        self.navigationItem.titleView = titleLabel
+        self.searchView.addSubview(self.searchText)
+        self.navigationItem.titleView = self.searchView
+        self.searchText.delegate = self
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: searchBtn)
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: newsLabel)
         self.view.clipsToBounds = true
@@ -112,6 +136,13 @@ extension NewsViewController {
         }
         self.startLoadingAnimation()
     }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    @objc private func hideKeyboard() {
+        self.view.endEditing(true)
+    }
 }
 //MARK: - Binding
 extension NewsViewController {
@@ -127,9 +158,15 @@ extension NewsViewController {
                 self.refresh.endRefreshing()
             }
             .disposed(by: disposeBag)
-        tableView.rx.modelSelected([AddTradesModel].self)
+        tableView.rx.modelSelected(NewsItems.self)
             .subscribe { selectedModel in
-                
+                if let url = URL(string: selectedModel.element?.originallink ?? ""){
+                    UIApplication.shared.open(url)
+                }else{
+                    if let url = URL(string: selectedModel.element?.link ?? "") {
+                        UIApplication.shared.open(url)
+                    }
+                }
             }
             .disposed(by: disposeBag)
         tableView.rx.didScroll
@@ -142,23 +179,41 @@ extension NewsViewController {
                 if offsetY > contentHeight - screenHeight {
                     self.isLoadingData = true
                     self.startLoadingAnimation()
-                    self.newsViewModel.loadMoreData(query: "암호화폐") {
-                        self.isLoadingData = false
-                        self.stopLoadingAnimation()
+                    if self.searchText.text != "" {
+                        self.newsViewModel.loadMoreData(query: (self.searchText.text ?? "")) {
+                            self.isLoadingData = false
+                            self.stopLoadingAnimation()
+                        }
+                    }else{
+                        self.newsViewModel.loadMoreData(query: "암호화폐") {
+                            self.isLoadingData = false
+                            self.stopLoadingAnimation()
+                        }
                     }
                 }
             })
             .disposed(by: disposeBag)
         refresh.rx.controlEvent(.valueChanged)
             .subscribe { _ in
-                self.newsViewModel.inputTrigger.onNext(("암호화폐"))
+                if self.searchText.text != "" {
+                    self.newsViewModel.inputTrigger.onNext((self.searchText.text ?? ""))
+                }else{
+                    self.newsViewModel.inputTrigger.onNext(("암호화폐"))
+                    self.refresh.endRefreshing()
+                }
             }
             .disposed(by: disposeBag)
         searchBtn.rx.tap
             .subscribe { _ in
-                self.navigationController?.pushViewController(NewsSearchViewController(), animated: true)
+                self.hideKeyboard()
+                if self.searchText.text != "" {
+                    self.newsViewModel.inputTrigger.onNext((self.searchText.text ?? ""))
+                }else{
+                    self.newsViewModel.inputTrigger.onNext(("암호화폐"))
+                }
             }
             .disposed(by: disposeBag)
+        
     }
     private func startLoadingAnimation() {
         if let gifUrl = Bundle.main.url(forResource: "Coin", withExtension: "gif") {

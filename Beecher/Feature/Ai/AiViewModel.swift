@@ -20,7 +20,7 @@ class AiViewModel {
     let newsTrigger = PublishSubject<String>()
     let newsResult: PublishSubject<[NewsItems]> = PublishSubject()
     
-    let chatTrigger = PublishSubject<Void>()
+    let chatTrigger = PublishSubject<ChatModel>()
     let chatResult : PublishSubject<ChatServiceModel> = PublishSubject()
     
     init() {
@@ -44,16 +44,10 @@ class AiViewModel {
         .bind(to: newsResult)
         .disposed(by: disposeBag)
         
-        WMResult.subscribe { data in
-            self.newsResult.subscribe { news in
-                self.chatTrigger.flatMapLatest { _ in
-                    return ChatGPTService.requestChat(data: data, news: news)
-                }
-                .bind(to: self.chatResult)
-                .disposed(by: self.disposeBag)
-            }
-            .disposed(by: self.disposeBag)
+        self.chatTrigger.flatMapLatest { chat in
+            return ChatGPTService.requestChat(data: chat)
         }
-        .disposed(by: disposeBag)
+        .bind(to: self.chatResult)
+        .disposed(by: self.disposeBag)
     }
 }
